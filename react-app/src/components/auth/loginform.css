@@ -1,3 +1,57 @@
-.login-form-container {
-    /* background-color: red; */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.login-page-container {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    background-image: url("https://images.unsplash.com/photo-1630163747646-1697cc74444e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1199&q=80");
+    background-size: cover;
+}
+
+.login-section-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: white;
+    padding: 0 2em;
+    width: 20%;
+    height: 100%;
+    border-left: 1px solid black;
+}
+
+.login-section-container > * {
+    text-align: center;
+}
+
+.login-page-email,
+.login-page-password {
+    display: flex;
+    justify-content: center;
+}
+
+.login-page-signup-link {
+    text-decoration: none;
+    color: blue
+}
+
+.login-section-container > form {
+    padding-top: 3em;
+}
+
+
+.login-section-container > * {
+    margin-top: 1em;
+}
+
+.login-section-container > form > * {
+    margin-top: 1em;
+}
+
+.login-demo-btn {
+    align-self: center;
+    width: 50%;
 }
