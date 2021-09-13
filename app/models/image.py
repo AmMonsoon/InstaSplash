@@ -1,5 +1,5 @@
 from .db import db
-
+import json
 class Image(db.Model):
     __tablename__ = 'images'
 
@@ -16,7 +16,6 @@ class Image(db.Model):
     like = db.relationship("Like", back_populates="image")
 
 
-
     def to_dict(self):
             return {
                 'id': self.id,
@@ -25,5 +24,6 @@ class Image(db.Model):
                 'imageUrl': self.imageUrl,
                 'profilePic': self.profilePic,
                 'created_at': self.created_at,
-                'updated_at': self.updated_at
+                'updated_at': self.updated_at,
+              
             }
