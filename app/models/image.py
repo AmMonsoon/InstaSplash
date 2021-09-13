@@ -15,8 +15,6 @@ class Image(db.Model):
     comment = db.relationship("Comment", back_populates="image")
     like = db.relationship("Like", back_populates="image")
 
-    def to_json(self):
-        return json.dumps(self, default= lambda o: o.__dict__, sort_keys = True, indent=4)
 
     def to_dict(self):
             return {
@@ -27,5 +25,5 @@ class Image(db.Model):
                 'profilePic': self.profilePic,
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
-                'poster': self.poster
+              
             }

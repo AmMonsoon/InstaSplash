@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchImage } from '../store/image';
 import { useDispatch } from 'react-redux';
+
 function Image(){
     const dispatch = useDispatch()
     const [image, setImage] =useState({})
-    const {imageId} = useParams();
-
+    const {imageId, userId} = useParams();
+   
 
 
     useEffect(() => {
@@ -24,7 +25,12 @@ function Image(){
       }
 
     return(
-        <h1>{image.caption}</h1>
+        <div>
+            <h1>{image.caption}</h1>
+           
+            <img src={image.imageUrl} alt='' />
+            
+        </div>
     )
 }
 

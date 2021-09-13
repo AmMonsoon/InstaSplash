@@ -13,7 +13,7 @@ def following(id):
 
 @image_routes.route('/<int:id>')
 def image(id):
-    # image = Image.query.options(orm.joinedload('poster')).get(id)
-    image = Image.query.join(User).filter(Image.id == id).first()
-    print('*********************', dir(image))
+    image = Image.query.options(orm.joinedload('poster')).get(id)
+    # image = Image.query.join(User).filter(Image.id == id).first()
+    print('*********************', image.poster.username)
     return image.to_dict()
