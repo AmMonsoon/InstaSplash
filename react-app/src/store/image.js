@@ -30,8 +30,7 @@ const imageReducer = (state = initialState, action) => {
     let newState = { ...state }
     switch (action.type) {
         case GET_FOLLOWING:
-            action.images.forEach(image => {
-                console.log(image)
+            Object.values(action.images).forEach(image => {
                 newState[image.id] = image
             })
             return newState

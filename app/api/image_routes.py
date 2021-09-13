@@ -19,7 +19,7 @@ def following():
             payload.append(image.to_dict())
     
     lit = dict(enumerate(payload))
-    print("helloooo", lit)
+    print("helloooo", list(lit.values()))
     return lit
     
 @image_routes.route('/<int:id>')
