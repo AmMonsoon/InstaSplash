@@ -10,3 +10,7 @@ image_routes = Blueprint('images', __name__)
 def following(id):
     print('from following-backend')
 
+@image_routes.route('/<int:id>')
+def image(id):
+    image = Image.query.get(id)
+    return image.to_dict()
