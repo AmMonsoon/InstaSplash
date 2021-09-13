@@ -1,9 +1,9 @@
 const GET_FOLLOWING = 'images/GET_FOLLOWING'
-const getFollowing = () => ({
+const getFollowing = (images) => ({
     type: GET_FOLLOWING,
     images,
 })
-export const getFollowing = () => async (dispatch) => {
+export const getFollow = () => async (dispatch) => {
     const res = await fetch('/api/images/following')
     const following = await res.json()
     dispatch(getFollowing(following))
