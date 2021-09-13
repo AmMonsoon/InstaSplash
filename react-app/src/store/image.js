@@ -12,7 +12,7 @@ export const fetchImage = (imageId) => async (dispatch) => {
     const image = await res.json()
     dispatch(getImage(image))
     return image
-
+}
 const getFollowing = (images) => ({
     type: GET_FOLLOWING,
     images,

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from app.models import Image, Follower, User
-
+from sqlalchemy import orm
+import json
 image_routes = Blueprint('images', __name__)
 
 # /following
@@ -12,5 +13,7 @@ def following(id):
 
 @image_routes.route('/<int:id>')
 def image(id):
-    image = Image.query.get(id)
+    # image = Image.query.options(orm.joinedload('poster')).get(id)
+    image = Image.query.join(User).filter(Image.id == id).first()
+    print('*********************', dir(image))
     return image.to_dict()
