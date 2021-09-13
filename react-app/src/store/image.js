@@ -25,17 +25,18 @@ export const getFollow = () => async (dispatch) => {
     return images
 }
 
-const initialState = {}
+const initialState = { all:{}, following: {}, notFollowing: {}}
 const imageReducer = (state = initialState, action) => {
     let newState = { ...state }
     switch (action.type) {
         case GET_FOLLOWING:
             Object.values(action.images).forEach(image => {
-                newState[image.id] = image
+                newState.following[image.id] = image
+                newState.all[image.id] = image
             })
             return newState
         case GET_IMAGE:
-            newState[action.image.id] = action.image
+            newState.all[action.image.id] = action.image
             return newState
         default: return state
     }
