@@ -14,15 +14,15 @@ export const fetchImage = (imageId) => async (dispatch) => {
     return image
 }
 
-const getFollowing = (image) => ({
+const getFollowing = (images) => ({
     type: GET_FOLLOWING,
-    image,
+    images,
 })
 export const getFollow = () => async (dispatch) => {
     const res = await fetch('/api/images/following')
-    const following = await res.json()
-    dispatch(getFollowing(following))
-    return following
+    const images = await res.json()
+    dispatch(getFollowing(images))
+    return images
 }
 
 const initialState = {}
@@ -30,7 +30,11 @@ const imageReducer = (state = initialState, action) => {
     let newState = { ...state }
     switch (action.type) {
         case GET_FOLLOWING:
-            action.images.forEach(image => { newState[image.id] = image })
+            action.images.forEach(image => {
+                console.log(image)
+                newState[image.id] = image
+            })
+            return newState
         case GET_IMAGE:
             newState[action.image.id] = action.image
             return newState
