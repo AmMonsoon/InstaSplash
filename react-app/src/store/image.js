@@ -12,15 +12,17 @@ export const fetchImage = (imageId) => async (dispatch) => {
     const image = await res.json()
     dispatch(getImage(image))
     return image
+}
 
-const getFollowing = (images) => ({
+const getFollowing = (image) => ({
     type: GET_FOLLOWING,
-    images,
+    image,
 })
 export const getFollow = () => async (dispatch) => {
     const res = await fetch('/api/images/following')
     const following = await res.json()
     dispatch(getFollowing(following))
+    return following
 }
 
 const initialState = {}
