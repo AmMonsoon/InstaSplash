@@ -9,7 +9,15 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    firstName = db.Column(db.String(50), nullable=False)
+    lastName = db.Column(db.String(50), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    image = db.relationship("Image", back_populates="poster")
+    user_follower = db.relationship("Follower", foreign_keys="Follower.follower", back_populates="rel_follower")
+    being_followed = db.relationship("Follower", foreign_keys="Follower.followed", back_populates="rel_followed")
+    comment = db.relationship("Comment", back_populates="commenter")
+    like = db.relationship("Like", back_populates="user")
 
     @property
     def password(self):
