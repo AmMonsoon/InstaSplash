@@ -1,0 +1,14 @@
+
+.image-page-container{
+    display: flex;
+    padding-left: 1em;
+
+}
+.image-info-container{
+    padding-left: 1em;
+}
+.image-page-pic{
+    max-height: 600px;
+    max-width: 600px;
+    border-radius: 4px;
+}
