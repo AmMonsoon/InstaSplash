@@ -21,9 +21,9 @@ function Home(){
 
         <div className='following__wrapper'>
             <div className="following__allFollowing">
-                <ul>
+                <ul className="following__ul">
                 {followingImages.map((image) =>
-                    <li>
+                    <li className="following__li">
                         {/* <div className="following__singleImage--container" key={image.id}> */}
                             <NavLink to={`/images/${image.id}`}>
                                 <img className="following__singleImage--image" src={image.imageUrl} alt=""></img>
