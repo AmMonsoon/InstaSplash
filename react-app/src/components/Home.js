@@ -21,14 +21,17 @@ function Home(){
 
         <div className='following__wrapper'>
             <div className="following__allFollowing">
+                <ul>
                 {followingImages.map((image) =>
-                    // {console.log(image)}
-                    <div className="following__singleImage--container" key={image.id}>
-                        <NavLink to={`/images/${image.id}`}>
-                            <img className="following__singleImage--image" src={image.imageUrl} alt=""></img>
-                        </NavLink>
-                    </div>
+                    <li>
+                        {/* <div className="following__singleImage--container" key={image.id}> */}
+                            <NavLink to={`/images/${image.id}`}>
+                                <img className="following__singleImage--image" src={image.imageUrl} alt=""></img>
+                            </NavLink>
+                        {/* </div> */}
+                    </li>
                 )}
+                </ul>
             </div>
        </div>
         // <>
