@@ -23,13 +23,13 @@ function Home(){
             <div className="following__allFollowing">
                 <ul className="following__ul">
                 {followingImages.map((image) =>
-                    <li className="following__li">
-                        {/* <div className="following__singleImage--container" key={image.id}> */}
+                    // <div className="following__li--div" key={image.id}>
+                        <li className="following__li">
                             <NavLink to={`/images/${image.id}`}>
                                 <img className="following__singleImage--image" src={image.imageUrl} alt=""></img>
                             </NavLink>
-                        {/* </div> */}
-                    </li>
+                        </li>
+                    //  </div>
                 )}
                 </ul>
             </div>
