@@ -28,3 +28,8 @@ def image(id):
     # image = Image.query.join(User).filter(Image.id == id).first()
     # image = Image.query.get(id)
     return image.to_dict_inc_user()
+
+@image_routes.route('/<int:id>' , methods=['PATCH'])
+def update_caption(id):
+    print('##################BODY',**request.body)
+    print('**********************FORM',**request.form)
