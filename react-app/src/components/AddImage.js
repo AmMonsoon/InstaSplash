@@ -12,23 +12,46 @@ const CreateImage = () => {
 
     const [imageUrl, setImageUrl] = useState('');
     const [caption, setCaption] = useState('');
-    const [profilePic, setProfilePic] = useState(null)
+    // const [profilePic, setProfilePic] = useState(null)
+    const [validationErrors, setValidationErrors] = useState([])
 
-    // useEffect(() => {
-    //     const errors = [];
-    //     if(!imageUrl.includes(""))
-    // })
+
+
+    const checkImage = (url) => {
+        const image = new Image();
+        image.onload = function() {
+          if (this.width > 0) {
+            console.log("image exists");
+            return true
+          }
+        }
+        image.onerror = function() {
+          console.log("image doesn't exist");
+        //   image_tag.src = '*DEFAULT IMAGE OR NO IMAGE, IMAGE LOCATION'
+        return false
+        }
+        image.src = url;
+      }
+
+    useEffect(() => {
+        const errors = [];
+        if(!checkImage(imageUrl)) errors.push("absc Please include a valid image URL")
+        setValidationErrors(errors)
+        console.log(validationErrors)
+    }, [imageUrl, dispatch])
 
     const handleSubmit = async(e) => {
         e.preventDefault();
         const image = {
             caption,
             imageUrl,
-            profilePic
+            // profilePic
         }
-        await dispatch(addNewImage(image))
+        let createdImage = await dispatch(addNewImage(image))
+        if(createdImage) {
+            history.push(`/users/${userId}`)
+        }
 
-        history.push(`/users/${userId}`)
     }
 
     const handleCancel = async(e) => {
@@ -41,18 +64,21 @@ const CreateImage = () => {
             <h1>create image form</h1>
             <form onSubmit={handleSubmit}>
                 <input
-                placeHolder="Caption"
+                placeholder="Caption"
                 type="text"
                 required
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
                 />
                 <input
-                placeHolder="Image URL"
+                placeholder="Image URL"
                 type="text"
                 required
                 value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
+                onChange={((e) => setImageUrl(e.target.value))}
+                // onChange={
+                //     checkImage(e.target.value)
+                // }
                 />
                 {/* <input
                 type="dropdown"
@@ -60,7 +86,7 @@ const CreateImage = () => {
                 value={imageUrl}
                 onChange={(e) => setCaption(e.target.value)}
                 /> */}
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={validationErrors.length > 0}>Submit</button>
                 <button type="click" onClick={handleCancel}>Cancel</button>
 
             </form>

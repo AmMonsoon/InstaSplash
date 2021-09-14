@@ -7,7 +7,7 @@ function Image(){
     const dispatch = useDispatch()
     const [image, setImage] =useState({})
     const {imageId, userId} = useParams();
-   
+
 
 
     useEffect(() => {
@@ -16,7 +16,7 @@ function Image(){
         }
         (async () => {
             const image = await dispatch(fetchImage(imageId));
-       
+
             setImage(image);
           })();
     },[imageId])
@@ -27,9 +27,10 @@ function Image(){
     return(
         <div>
             <h1>{image.caption}</h1>
-           
+            {console.log("zzzzzzzzzzzzzz",image.imageUrl)}
+
             <img src={image.imageUrl} alt='' />
-            
+
         </div>
     )
 }

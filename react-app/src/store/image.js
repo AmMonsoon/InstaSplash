@@ -11,7 +11,7 @@ const addImage = (image) => ({
 
 export const addNewImage = (imagePayload) => async(dispatch) => {
     const res = await fetch('/api/images/add', {
-        methods:"POST",
+        method:"POST",
         headers: { "Content-Type" : "application/json" },
         body: JSON.stringify(imagePayload)
     })
