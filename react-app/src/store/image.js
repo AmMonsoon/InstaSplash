@@ -15,18 +15,33 @@ type: DELETE_IMAGE,
 imageId
 })
 
-const addLike = (imageId) => ({
+const addLike = (imageId, userId) => ({
     type: ADD_LIKE,
-    imageId
+    payload: {
+        imageId, userId
+    }
 })
 
-const removeLike = (imageId) => ({
+const removeLike = (imageId, userId) => ({
     type: REMOVE_LIKE,
-    imageId
+    payload: {
+        imageId, userId
+    }
 })
 
-export const postLike = (imageId) => async(dispatch) => {
+export const postLike = (imageId, userId) => async(dispatch) => {
     const res = await fetch(`/api/images/${imageId}/like`)
+    if (res.ok){
+        dispatch(addLike(imageId, userId))
+    }
+}
+
+export const destroyLike = (imageId, userId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}/unlike`)
+    if (res.ok){
+        dispatch(removeLike(imageId, userId))
+    }
+    return
 }
 
 export const destroyImage = (imageId) => async(dispatch) => {
@@ -35,6 +50,7 @@ export const destroyImage = (imageId) => async(dispatch) => {
         method: 'DELETE'
     })
     dispatch(deleteImage(imageId))
+    return
 }
 
 export const fetchImage = (imageId) => async (dispatch) => {
@@ -52,7 +68,6 @@ export const patchCaption = (caption, imageId) => async(dispatch) => {
     })
     if (res.ok) {
         const image = await res.json()
-        console.log(image)
         dispatch(getImage(image))
         return image
     }
@@ -85,7 +100,21 @@ const imageReducer = (state = initialState, action) => {
         case DELETE_IMAGE:
             delete newState.all[action.imageId]
             return newState
-            
+        case ADD_LIKE:
+            const imageId = action.payload.imageId
+            console.log('imageid', imageId)
+            const userId = action.payload.userId
+            console.log('userId', userId)
+            newState.all[imageId].likes[userId] = { imageId, userId}
+            return newState
+        case REMOVE_LIKE:
+            const imageId2 = action.payload.imageId
+            console.log('imageid', imageId2)
+            const userId2 = action.payload.userId
+            console.log('userId', userId2)
+            delete newState.all[imageId2].likes[userId2]
+
+            return newState
         default: return state
     }
 }

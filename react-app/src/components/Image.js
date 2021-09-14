@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams ,useHistory} from 'react-router-dom';
 import { fetchImage } from '../store/image';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import EditCaptionForm from "./EditCaptionForm"
-import { destroyImage } from '../store/image';
+import { destroyImage, postLike, destroyLike } from '../store/image';
 import './Image.css'
 function Image(){
     const history = useHistory()
@@ -11,8 +11,9 @@ function Image(){
     const dispatch = useDispatch()
     const image = useSelector(state => state.images.all[imageId])
     const user = useSelector(state => state.session.user)
+    const like = useSelector(state => state.images.all[imageId]?.likes[user.id])
     const [showEdit, setShowEdit] = useState(false)
-   
+
 
 
     useEffect(() => {
@@ -60,6 +61,15 @@ function Image(){
         history.push('/images/following')
     }
 
+    const handleUnlike = async(e) => {
+        e.preventDefault()
+        await dispatch(destroyLike(imageId, user.id))
+    }
+
+    const handleLike = async(e) => {
+        e.preventDefault()
+        await dispatch(postLike(imageId, user.id))
+    }
 
     return(
         <div className='image-page-container'>
@@ -80,7 +90,8 @@ function Image(){
                         Likes: {image.likes && Object.keys(image?.likes).length}
                     </div>
                     <div>
-                        Have I liked this?: { user.id in image?.likes ? "True" : "False"}
+                        { like && <button onClick={e => handleUnlike(e)}>Unlike</button> }
+                        { !like && <button onClick={e => handleLike(e)}>Like</button>}
                     </div>
                 </div> 
             </div>

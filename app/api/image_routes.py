@@ -28,7 +28,6 @@ def following():
 def image(id):
     image = Image.query.options(orm.joinedload('poster')).get(id)
     likes = Like.query.filter(Like.imageId == id).all()
-    print('*********************test', likes)
     payload = {}
     for like in likes:
         payload[like.userId] = like.to_dict()
@@ -53,14 +52,17 @@ def delete_image(id):
 
 @image_routes.route('/<int:id>/like')
 def add_like(id):
-    like = Like(userId = current_user.id, imageId = id)
-    db.session.add(like)
-    db.session.commit()
-    return
+    existingLike = Like.query.filter(Like.userId == current_user.id, Like.imageId == id).first()
+    if not existingLike:
+        like = Like(userId = current_user.id, imageId = id)
+        db.session.add(like)
+        db.session.commit()
+    return "BIG SUCCESS"
 
 @image_routes.route('/<int:id>/unlike')
-def add_like(id):
-    like = Like.query.filter(Like.userId == current_user.id, Like.imageId == id)
-    db.session.delete(like)
-    db.session.commit()
-    return
+def remove_like(id):
+    like = Like.query.filter(Like.userId == current_user.id, Like.imageId == id).first()
+    if like:
+        db.session.delete(like)
+        db.session.commit()
+    return "BIG SUCCESS"
