@@ -38,3 +38,9 @@ def update_caption(id):
     db.session.commit()
     return image.to_dict_inc_user()
     
+@image_routes.route('/<int:id>' , methods=['DELETE'])
+def delete_image(id):
+    image = Image.query.get(id)
+    db.session.delete(image)
+    db.session.commit()
+    return "BIG SUCCESS"

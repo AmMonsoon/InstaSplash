@@ -1,6 +1,6 @@
 const GET_FOLLOWING = 'images/GET_FOLLOWING'
 const GET_IMAGE = 'images/GET_IMAGE'
-// const UPDATE_CAPTION = 'images/UPDATE_CAPTION'
+const DELETE_IMAGE = 'images/DELETE_IMAGE'
 
 
 const getImage = (image) => ({
@@ -8,10 +8,18 @@ type: GET_IMAGE,
 image,
 })
 
-// const editCaption = (caption, imageId) => ({
-//     type: UPDATE_CAPTION,
-//     caption,
-// })
+const deleteImage = (imageId) => ({
+type: DELETE_IMAGE,
+imageId
+})
+
+export const destroyImage = (imageId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}`,
+    {
+        method: 'DELETE'
+    })
+    dispatch(deleteImage(imageId))
+}
 
 export const fetchImage = (imageId) => async (dispatch) => {
     const res = await fetch(`/api/images/${imageId}`)
@@ -58,6 +66,10 @@ const imageReducer = (state = initialState, action) => {
         case GET_IMAGE:
             newState.all[action.image.id] = action.image
             return newState
+        case DELETE_IMAGE:
+            delete newState.all[action.imageId]
+            return newState
+            
         default: return state
     }
 }
