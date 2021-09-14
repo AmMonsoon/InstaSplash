@@ -21,7 +21,6 @@ const LoginForm = () => {
 
   const loginDemo = async (e) => {
     e.preventDefault();
-    console.log('test')
     await dispatch(login('demo@aa.io', 'password'));
   };
 
