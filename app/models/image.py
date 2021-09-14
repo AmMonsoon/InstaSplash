@@ -25,5 +25,16 @@ class Image(db.Model):
                 'profilePic': self.profilePic,
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
-              
+            }
+
+    def to_dict_inc_user(self):
+            return {
+                'id': self.id,
+                'userId': self.userId ,
+                'caption': self.caption,
+                'imageUrl': self.imageUrl,
+                'profilePic': self.profilePic,
+                'created_at': self.created_at,
+                'updated_at': self.updated_at,
+                'poster': self.poster.to_dict()
             }
