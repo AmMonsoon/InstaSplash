@@ -1,0 +1,35 @@
+.following__wrapper{
+    border: 1px dotted black;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+}
+
+.following__allFollowing{
+    border: 3px dotted red;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 60%;
+    height: auto;
+
+}
+
+.following__singleImage--container{
+    border: 3px solid black;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+}
+
+.following__singleImage--image{
+    border: 3px dashed red;
+    height: auto;
+    width: 300px;
+
+}

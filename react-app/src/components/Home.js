@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFollow } from '../store/image'
 import { NavLink } from 'react-router-dom'
+import "./Home.css"
 
 
 function Home(){
@@ -14,19 +15,17 @@ function Home(){
             await dispatch(getFollow());
           })();
     }, [dispatch])
-    
+
 
     return (
-        
+
         <div className='following__wrapper'>
             <div className="following__allFollowing">
-                {followingImages.map((image) => 
+                {followingImages.map((image) =>
                     // {console.log(image)}
                     <div className="following__singleImage--container" key={image.id}>
                         <NavLink to={`/images/${image.id}`}>
-                            <div className="following__singlImage--image">
-                                <img src={image.imageUrl} alt=""></img>
-                            </div>
+                            <img className="following__singleImage--image" src={image.imageUrl} alt=""></img>
                         </NavLink>
                     </div>
                 )}
@@ -42,4 +41,4 @@ function Home(){
 }
 
 
-export default Home 
+export default Home
