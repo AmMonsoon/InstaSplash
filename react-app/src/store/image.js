@@ -1,6 +1,8 @@
 const GET_FOLLOWING = 'images/GET_FOLLOWING'
 const GET_IMAGE = 'images/GET_IMAGE'
 const DELETE_IMAGE = 'images/DELETE_IMAGE'
+const ADD_LIKE = 'images/ADD_LIKE'
+const REMOVE_LIKE = 'images/REMOVE_LIKE'
 
 
 const getImage = (image) => ({
@@ -12,6 +14,20 @@ const deleteImage = (imageId) => ({
 type: DELETE_IMAGE,
 imageId
 })
+
+const addLike = (imageId) => ({
+    type: ADD_LIKE,
+    imageId
+})
+
+const removeLike = (imageId) => ({
+    type: REMOVE_LIKE,
+    imageId
+})
+
+export const postLike = (imageId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}/like`)
+}
 
 export const destroyImage = (imageId) => async(dispatch) => {
     const res = await fetch(`/api/images/${imageId}`,

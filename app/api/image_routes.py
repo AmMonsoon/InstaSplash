@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import Image, Follower, User
+from app.models import Image, Follower, User, Like
 from sqlalchemy import orm
 import json
 from flask_login import current_user
@@ -27,7 +27,13 @@ def following():
 @image_routes.route('/<int:id>')
 def image(id):
     image = Image.query.options(orm.joinedload('poster')).get(id)
-    return image.to_dict_inc_user()
+    likes = Like.query.filter(Like.imageId == id).all()
+    print('*********************test', likes)
+    payload = {}
+    for like in likes:
+        payload[like.userId] = like.to_dict()
+    image.likes = payload
+    return image.to_dict_inc_user_likes()
 
 @image_routes.route('/<int:id>' , methods=['PATCH'])
 def update_caption(id):
@@ -44,3 +50,17 @@ def delete_image(id):
     db.session.delete(image)
     db.session.commit()
     return "BIG SUCCESS"
+
+@image_routes.route('/<int:id>/like')
+def add_like(id):
+    like = Like(userId = current_user.id, imageId = id)
+    db.session.add(like)
+    db.session.commit()
+    return
+
+@image_routes.route('/<int:id>/unlike')
+def add_like(id):
+    like = Like.query.filter(Like.userId == current_user.id, Like.imageId == id)
+    db.session.delete(like)
+    db.session.commit()
+    return

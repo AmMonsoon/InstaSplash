@@ -74,7 +74,15 @@ function Image(){
             }
                 </div>
                     {captionContent}
-                </div>  
+                </div> 
+                <div>
+                    <div>
+                        Likes: {image.likes && Object.keys(image?.likes).length}
+                    </div>
+                    <div>
+                        Have I liked this?: { user.id in image?.likes ? "True" : "False"}
+                    </div>
+                </div> 
             </div>
         </div>
     )
