@@ -1,6 +1,6 @@
 const GET_FOLLOWING = 'images/GET_FOLLOWING'
 const GET_IMAGE = 'images/GET_IMAGE'
-const UPDATE_CAPTION = 'images/UPDATE_CAPTION'
+// const UPDATE_CAPTION = 'images/UPDATE_CAPTION'
 
 
 const getImage = (image) => ({
@@ -8,11 +8,10 @@ type: GET_IMAGE,
 image,
 })
 
-const editCaption = (caption, imageId) => ({
-    type: UPDATE_CAPTION,
-    caption,
-    imageId
-})
+// const editCaption = (caption, imageId) => ({
+//     type: UPDATE_CAPTION,
+//     caption,
+// })
 
 export const fetchImage = (imageId) => async (dispatch) => {
     const res = await fetch(`/api/images/${imageId}`)
@@ -25,8 +24,14 @@ export const patchCaption = (caption, imageId) => async(dispatch) => {
     const res = await fetch(`/api/images/${imageId}`, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(caption)
+        body: JSON.stringify({caption})
     })
+    if (res.ok) {
+        const image = await res.json()
+        console.log(image)
+        dispatch(getImage(image))
+        return image
+    }
 }
 
 const getFollowing = (images) => ({

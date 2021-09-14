@@ -1,8 +1,10 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.models import Image, Follower, User
 from sqlalchemy import orm
 import json
 from flask_login import current_user
+from app.models import db
+
 
 image_routes = Blueprint('images', __name__)
 
@@ -25,11 +27,14 @@ def following():
 @image_routes.route('/<int:id>')
 def image(id):
     image = Image.query.options(orm.joinedload('poster')).get(id)
-    # image = Image.query.join(User).filter(Image.id == id).first()
-    # image = Image.query.get(id)
     return image.to_dict_inc_user()
 
 @image_routes.route('/<int:id>' , methods=['PATCH'])
 def update_caption(id):
-    print('##################BODY',**request.body)
-    print('**********************FORM',**request.form)
+    newcaption = request.json['caption']
+    image = Image.query.options(orm.joinedload('poster')).get(id)
+    image.caption = newcaption
+    db.session.add(image)
+    db.session.commit()
+    return image.to_dict_inc_user()
+    
