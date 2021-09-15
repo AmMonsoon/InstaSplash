@@ -77,11 +77,13 @@ def add_like(id):
 
 @image_routes.route('/<int:id>/unlike')
 def remove_like(id):
-    like = Like.query.filter(Like.userId == current_user.id, Like.imageId == id).first()
-    if like:
-        db.session.delete(like)
-        db.session.commit()
+    like = Like.query.filter(Like.userId == current_user.id, Like.imageId == id).all()
+    if len(like):
+        for eachlike in like:
+            db.session.delete(eachlike)
+            db.session.commit()
     return "BIG SUCCESS"
+
 
 @image_routes.route('/<int:id>/comments')
 def get_comments(id):
@@ -127,3 +129,4 @@ def delete_comment(id, commentId):
     db.session.delete(commentToDelete)
     db.session.commit()
     return "YES, DELETED"
+
