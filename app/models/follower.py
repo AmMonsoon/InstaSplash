@@ -9,3 +9,9 @@ class Follower(db.Model):
 
     rel_follower = db.relationship("User", foreign_keys="Follower.follower", back_populates="user_follower" )
     rel_followed = db.relationship("User", foreign_keys="Follower.followed", back_populates="being_followed")
+
+    def to_dict(self): 
+        return {
+            "followerId": self.follower,
+            "followedId": self.followed
+        }

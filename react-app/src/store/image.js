@@ -115,7 +115,6 @@ const imageReducer = (state = initialState, action) => {
         case GET_IMAGE:
             newState.all[action.image.id] = action.image
             return newState
-
         case ADD_IMAGE:
             newState[action.image.id] = action.image
         case DELETE_IMAGE:
@@ -123,16 +122,12 @@ const imageReducer = (state = initialState, action) => {
             return newState
         case ADD_LIKE:
             const imageId = action.payload.imageId
-            console.log('imageid', imageId)
             const userId = action.payload.userId
-            console.log('userId', userId)
             newState.all[imageId].likes[userId] = { imageId, userId}
             return newState
         case REMOVE_LIKE:
             const imageId2 = action.payload.imageId
-            console.log('imageid', imageId2)
             const userId2 = action.payload.userId
-            console.log('userId', userId2)
             delete newState.all[imageId2].likes[userId2]
             return newState
         default: return state
