@@ -10,7 +10,7 @@ def seed_comments():
     db.session.add(first_comment)
 
 
-    for i in range(100):
+    for i in range(200):
         comment = Comment(userId=faker.random_int(min=1, max=53), imageId=faker.random_int(min=1, max=60), commentBody=faker.sentence(), created_at=datetime.now())
         db.session.add(comment)
     db.session.commit()

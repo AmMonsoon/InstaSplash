@@ -15,7 +15,20 @@ def following():
     for element in following:
         images = Image.query.filter(Image.userId == element.followed)
         for image in images:
-            payload.append(image.to_dict())
+
+            likes = Like.query.filter(Like.imageId == image.id).all()
+            payload2 = {}
+            for like in likes:
+                payload2[like.userId] = like.to_dict()
+            image.likes = payload2
+
+            comments = Comment.query.filter(Comment.imageId == image.id).all()
+            commentPayload = {}
+            for comment in comments:
+                commentPayload[comment.imageId] = comment.comment_to_dict()
+
+            image.comments = commentPayload
+            payload.append(image.to_dict_inc_user_likes_comments())
     lit = dict(enumerate(payload))
     return lit
 
@@ -129,4 +142,3 @@ def delete_comment(id, commentId):
     db.session.delete(commentToDelete)
     db.session.commit()
     return "YES, DELETED"
-
