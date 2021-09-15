@@ -37,8 +37,8 @@ const handleFollow = async(e) => {
   return (
     <>
       <div>
-        { follow && <button onClick={e => handleUnfollow(e)}>Unfollow</button> }
-        { !follow && <button onClick={e => handleFollow(e)}>Follow</button>}
+        { currentUser.id !== Number(userId) && follow && <button onClick={e => handleUnfollow(e)}>Unfollow</button> }
+        { currentUser.id !== Number(userId) && !follow && <button onClick={e => handleFollow(e)}>Follow</button>}
       </div>
       <ul>
         <li>
