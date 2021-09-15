@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditCommentForm from './EditCommentForm';
+import { deleteComment } from '../store/image';
 
 function SingleComment({ comment }) {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
 
     const [showEdit, setShowEdit] = useState(false)
@@ -16,6 +18,12 @@ function SingleComment({ comment }) {
         e.preventDefault()
         setShowEdit(false)
     }
+
+    const handleDelete = async(e) => {
+        e.preventDefault();
+        await dispatch(deleteComment(comment.id, comment.imageId))
+    }
+
     let commentContent;
     if (showEdit){
         commentContent = <EditCommentForm oldComment={comment.commentBody} hideEdit={hideEdit} commentId={comment.id}/>
@@ -28,6 +36,7 @@ function SingleComment({ comment }) {
                 comment?.userId === user.id &&
                 <div>
                 <button onClick={displayEdit}>Edit</button>
+                <button onClick={(e) => handleDelete(e)}>Delete</button>
                 </div>
             }
         </>

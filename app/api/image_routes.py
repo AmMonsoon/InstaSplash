@@ -121,3 +121,9 @@ def edit_comment(id, commentId):
     # /images/5/comments/add
     # /images/5/comments/id/delete
     # /images/5/comments/id -- can use current_user to verify and allow edit button
+@image_routes.route('/<int:id>/comments/<int:commentId>', methods=['DELETE'])
+def delete_comment(id, commentId):
+    commentToDelete = Comment.query.get(commentId)
+    db.session.delete(commentToDelete)
+    db.session.commit()
+    return "YES, DELETED"

@@ -7,6 +7,24 @@ const REMOVE_LIKE = 'images/REMOVE_LIKE'
 const GET_COMMENTS = 'images/GET_COMMENTS'
 const ADD_COMMENT = 'images/ADD_COMMENT'
 const EDIT_COMMENT = 'images/EDIT_COMMENT'
+const REMOVE_COMMENT = 'images/REMOVE_COMMENT'
+
+const delComment = (commentId, imageId) => ({
+    type: REMOVE_COMMENT,
+    payload: {
+        commentId,
+        imageId
+    }
+})
+
+export const deleteComment = (commentId, imageId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}/comments/${commentId}`, {
+        method: "DELETE"
+    })
+    if(res.ok) {
+        dispatch(delComment(commentId, imageId))
+    }
+}
 
 const editComment = (comment) => ({
     type: EDIT_COMMENT,
@@ -186,8 +204,11 @@ const imageReducer = (state = initialState, action) => {
         case ADD_COMMENT:
             newState.all[action.payload.imageId].comments[action.payload.comment.id] = action.payload.comment
             return newState
-            case EDIT_COMMENT:
+        case EDIT_COMMENT:
             newState.all[action.comment.imageId].comments[action.comment.id] = action.comment
+            return newState
+        case REMOVE_COMMENT:
+            delete newState.all[action.payload.imageId].comments[action.payload.commentId]
             return newState
         default: return state
     }

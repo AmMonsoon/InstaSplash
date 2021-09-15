@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAllComments } from '../store/image';
 import { useDispatch, useSelector } from 'react-redux';
-import EditCommentForm from './EditCommentForm';
 import SingleComment from './SingleComment';
 import './Comment.css'
 
