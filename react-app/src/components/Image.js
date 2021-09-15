@@ -28,7 +28,7 @@ function Image(){
 
             await dispatch(fetchImage(imageId));
           })();
-    },[imageId])
+    },[imageId, dispatch])
 
     if (!image) {
         return null;
@@ -53,7 +53,7 @@ function Image(){
         <>
             <h2>{image?.caption}</h2>
             {
-             user.id == image?.userId &&  <button onClick={displayEdit}>Edit</button>
+             user.id === image?.userId &&  <button onClick={displayEdit}>Edit</button>
 
             }
         </>
@@ -87,7 +87,7 @@ function Image(){
                 <div className='image-caption-container'>
                 <div>
                 {
-             user.id == image?.userId &&  <button onClick={e => deleteImage(e)}>Delete Image</button>
+             user.id === image?.userId &&  <button onClick={e => deleteImage(e)}>Delete Image</button>
 
             }
                 </div>

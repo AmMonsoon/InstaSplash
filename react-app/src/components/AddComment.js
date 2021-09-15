@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams ,useHistory} from 'react-router-dom';
 import { addNewComment } from '../store/image';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './AddComment.css'
 
 function AddComment() {
@@ -9,7 +9,7 @@ function AddComment() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const userId = useSelector(state => state.session.user.id)
+    // const userId = useSelector(state => state.session.user.id)
 
     const [commentBody, setCommentBody] = useState('')
 

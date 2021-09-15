@@ -1,4 +1,4 @@
-import { useState, useEffect,} from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { patchCaption } from '../store/image';
 import { useParams } from 'react-router-dom';

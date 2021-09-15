@@ -95,7 +95,7 @@ export const destroyLike = (imageId, userId) => async(dispatch) => {
 }
 
 export const destroyImage = (imageId) => async(dispatch) => {
-    const res = await fetch(`/api/images/${imageId}`,
+    await fetch(`/api/images/${imageId}`,
     {
         method: 'DELETE'
     })
@@ -149,6 +149,7 @@ const imageReducer = (state = initialState, action) => {
             return newState
         case ADD_IMAGE:
             newState[action.image.id] = action.image
+            return newState
         case DELETE_IMAGE:
             delete newState.all[action.imageId]
             return newState

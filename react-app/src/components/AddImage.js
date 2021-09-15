@@ -37,7 +37,7 @@ useEffect(() => {
     if(!checkImage(imageUrl)) errors.push("Please include a valid image URL")
     setValidationErrors(errors)
     console.log("valErr", validationErrors)
-}, [imageUrl, dispatch])
+}, [imageUrl, dispatch, validationErrors])
 
 const handleSubmit = async(e) => {
     e.preventDefault();
