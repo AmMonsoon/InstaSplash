@@ -1,11 +1,11 @@
 const GET_FOLLOWING = 'images/GET_FOLLOWING'
 const GET_IMAGE = 'images/GET_IMAGE'
+const ADD_IMAGE = 'images/ADD'
 const DELETE_IMAGE = 'images/DELETE_IMAGE'
 const ADD_LIKE = 'images/ADD_LIKE'
 const REMOVE_LIKE = 'images/REMOVE_LIKE'
 
 
-const ADD_IMAGE = 'images/ADD'
 
 const addImage = (image) => ({
     type: ADD_IMAGE,
