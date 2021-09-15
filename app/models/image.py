@@ -38,3 +38,16 @@ class Image(db.Model):
                 'updated_at': self.updated_at,
                 'poster': self.poster.to_dict()
             }
+
+    def to_dict_inc_user_likes(self):
+            return {
+                'id': self.id,
+                'userId': self.userId ,
+                'caption': self.caption,
+                'imageUrl': self.imageUrl,
+                'profilePic': self.profilePic,
+                'created_at': self.created_at,
+                'updated_at': self.updated_at,
+                'poster': self.poster.to_dict(),
+                'likes': self.likes
+            }
