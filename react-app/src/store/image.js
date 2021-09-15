@@ -1,11 +1,75 @@
+const ADD_IMAGE = 'images/ADD'
 const GET_FOLLOWING = 'images/GET_FOLLOWING'
 const GET_IMAGE = 'images/GET_IMAGE'
 const DELETE_IMAGE = 'images/DELETE_IMAGE'
 const ADD_LIKE = 'images/ADD_LIKE'
 const REMOVE_LIKE = 'images/REMOVE_LIKE'
+const GET_COMMENTS = 'images/GET_COMMENTS'
+const ADD_COMMENT = 'images/ADD_COMMENT'
+const EDIT_COMMENT = 'images/EDIT_COMMENT'
+const REMOVE_COMMENT = 'images/REMOVE_COMMENT'
 
+const delComment = (commentId, imageId) => ({
+    type: REMOVE_COMMENT,
+    payload: {
+        commentId,
+        imageId
+    }
+})
 
-const ADD_IMAGE = 'images/ADD'
+export const deleteComment = (commentId, imageId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}/comments/${commentId}`, {
+        method: "DELETE"
+    })
+    if(res.ok) {
+        dispatch(delComment(commentId, imageId))
+    }
+}
+
+const editComment = (comment) => ({
+    type: EDIT_COMMENT,
+        comment
+})
+
+export const editAComment = (commentBody, commentId, imageId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}/comments/${commentId}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({commentBody})
+    })
+    const edittedComment = await res.json()
+    dispatch(editComment(edittedComment))
+}
+
+const addComment = (comment, imageId) => ({
+    type: ADD_COMMENT,
+    payload: {
+        comment,
+        imageId
+    }
+})
+
+export const addNewComment = (comment, imageId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}/comments/add`, {
+        method: "POST",
+        headers: { "Content-Type":"application/json" },
+        body: JSON.stringify(comment)
+    })
+    const newComment = await res.json()
+    dispatch(addComment(newComment, imageId))
+}
+
+const getComments = (comments) => ({
+    type: GET_COMMENTS,
+    comments
+})
+
+export const getAllComments = (imageId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}/comments`)
+    const comments = await res.json()
+    dispatch(getComments(comments))
+    return comments
+}
 
 const addImage = (image) => ({
     type: ADD_IMAGE,
@@ -63,7 +127,7 @@ export const destroyLike = (imageId, userId) => async(dispatch) => {
 }
 
 export const destroyImage = (imageId) => async(dispatch) => {
-    const res = await fetch(`/api/images/${imageId}`,
+    await fetch(`/api/images/${imageId}`,
     {
         method: 'DELETE'
     })
@@ -117,6 +181,7 @@ const imageReducer = (state = initialState, action) => {
             return newState
         case ADD_IMAGE:
             newState[action.image.id] = action.image
+            return newState
         case DELETE_IMAGE:
             delete newState.all[action.imageId]
             return newState
@@ -129,6 +194,21 @@ const imageReducer = (state = initialState, action) => {
             const imageId2 = action.payload.imageId
             const userId2 = action.payload.userId
             delete newState.all[imageId2].likes[userId2]
+            return newState
+        case GET_COMMENTS:
+            Object.values(action.comments).forEach(comment => {
+                const commentImgId = comment.imageId
+                newState.all[commentImgId].comments[comment.id] = comment
+            })
+            return newState
+        case ADD_COMMENT:
+            newState.all[action.payload.imageId].comments[action.payload.comment.id] = action.payload.comment
+            return newState
+        case EDIT_COMMENT:
+            newState.all[action.comment.imageId].comments[action.comment.id] = action.comment
+            return newState
+        case REMOVE_COMMENT:
+            delete newState.all[action.payload.imageId].comments[action.payload.commentId]
             return newState
         default: return state
     }

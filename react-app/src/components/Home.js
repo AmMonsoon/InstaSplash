@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFollow } from '../store/image'
 import { NavLink } from 'react-router-dom'
@@ -6,7 +6,7 @@ import "./Home.css"
 
 
 function Home(){
-    const user = useSelector(state => state.session.user)
+    // const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const followingImages = useSelector(state => Object.values(state.images.following))
 

@@ -5,6 +5,9 @@ import { useDispatch, useSelector} from 'react-redux';
 import EditCaptionForm from "./EditCaptionForm"
 import { destroyImage, postLike, destroyLike } from '../store/image';
 import './Image.css'
+import Comment from './Comment';
+import AddComment from './AddComment';
+
 function Image(){
     const history = useHistory()
     const {imageId} = useParams();
@@ -17,7 +20,6 @@ function Image(){
 
 
 
-
     useEffect(() => {
         if(!imageId){
             return;
@@ -26,7 +28,7 @@ function Image(){
 
             await dispatch(fetchImage(imageId));
           })();
-    },[imageId])
+    },[imageId, dispatch])
 
     if (!image) {
         return null;
@@ -34,7 +36,7 @@ function Image(){
 
     let captionContent;
     const displayEdit = (e) => {
-        e.preventDefault() 
+        e.preventDefault()
         setShowEdit(true)
     }
 
@@ -45,19 +47,19 @@ function Image(){
 
     if (showEdit){
         captionContent = <EditCaptionForm oldCaption={image.caption} hideEdit={hideEdit}/>
-    }   
+    }
     else{
         captionContent = (
         <>
-            <h2>{image?.caption}</h2> 
+            <h2>{image?.caption}</h2>
             {
-             user.id == image?.userId &&  <button onClick={displayEdit}>Edit</button>
+             user.id === image?.userId &&  <button onClick={displayEdit}>Edit</button>
 
             }
         </>
-        ) 
+        )
     }
-    
+
     const deleteImage = async(e) =>{
         e.preventDefault()
         await dispatch(destroyImage(imageId))
@@ -77,18 +79,20 @@ function Image(){
     return(
 
         <div className='image-page-container'>
+            <Comment />
+            <AddComment />
             <img className='image-page-pic' src={image.imageUrl} alt='' />
             <div className='image-info-container'>
-                <h1>{image?.poster?.username}</h1> 
-                <div className='image-caption-container'> 
+                <h1>{image?.poster?.username}</h1>
+                <div className='image-caption-container'>
                 <div>
                 {
-             user.id == image?.userId &&  <button onClick={e => deleteImage(e)}>Delete Image</button>
+             user.id === image?.userId &&  <button onClick={e => deleteImage(e)}>Delete Image</button>
 
             }
                 </div>
                     {captionContent}
-                </div> 
+                </div>
                 <div>
                     <div>
                         Likes: {image.likes && Object.keys(image?.likes).length}
@@ -97,7 +101,7 @@ function Image(){
                         { like && <button onClick={e => handleUnlike(e)}>Unlike</button> }
                         { !like && <button onClick={e => handleLike(e)}>Like</button>}
                     </div>
-                </div> 
+                </div>
             </div>
 
         </div>
