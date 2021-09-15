@@ -7,17 +7,17 @@ const REMOVE_LIKE = 'images/REMOVE_LIKE'
 const GET_COMMENTS = 'images/GET_COMMENTS'
 
 
-const getComment = (comment) => ({
+const getComments = (comments) => ({
     type: GET_COMMENTS,
-    comment
+    comments
 })
 
 
 export const getAllComments = (imageId) => async(dispatch) => {
     const res = await fetch(`/api/images/${imageId}/comments`)
-    const comment = await res.json()
-    dispatch(getComment(comment))
-    return comment
+    const comments = await res.json()
+    dispatch(getComments(comments))
+    return comments
 }
 
 const addImage = (image) => ({
@@ -144,11 +144,10 @@ const imageReducer = (state = initialState, action) => {
             delete newState.all[imageId2].likes[userId2]
             return newState
         case GET_COMMENTS:
-            // newState[action.image.id] = action.comment
-            newState.all
-            // const commentImgId = action.payload.imageId
-            // const commentUserId = action.payload.userId
-            // newState.all[commentImgId].comments = newState.all.comments[imageId]
+            Object.values(action.comments).forEach(comment => {
+                const commentImgId = comment.imageId
+                newState.all[commentImgId].comments[comment.id] = comment
+            })
             return newState
         default: return state
     }

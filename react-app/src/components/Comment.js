@@ -11,6 +11,7 @@ function Comment() {
 
     const image = useSelector(state => state.images.all[imageId])
     const user = useSelector(state => state.session.user)
+    const comments = useSelector(state => Object.values(state.images.all[imageId]?.comments))
 
     useEffect(() => {
         (async () => {
@@ -23,6 +24,7 @@ function Comment() {
         <div>
             {console.log("Image Id", imageId, "image", image)}
             <h4>this is the comments section</h4>
+            <h1>{comments[0].commentBody}</h1>
         </div>
     )
 }

@@ -10,7 +10,7 @@ class Image(db.Model):
     profilePic = db.Column(db.BOOLEAN)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True))
-    
+
     poster = db.relationship("User", back_populates="image")
     comment = db.relationship("Comment", cascade="all,delete", back_populates="image")
     like = db.relationship("Like", cascade="all,delete", back_populates="image")
@@ -50,4 +50,18 @@ class Image(db.Model):
                 'updated_at': self.updated_at,
                 'poster': self.poster.to_dict(),
                 'likes': self.likes
+            }
+
+    def to_dict_inc_user_likes_comments(self):
+            return {
+                'id': self.id,
+                'userId': self.userId ,
+                'caption': self.caption,
+                'imageUrl': self.imageUrl,
+                'profilePic': self.profilePic,
+                'created_at': self.created_at,
+                'updated_at': self.updated_at,
+                'poster': self.poster.to_dict(),
+                'likes': self.likes,
+                'comments': self.comments
             }

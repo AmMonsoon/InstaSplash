@@ -27,7 +27,12 @@ def image(id):
     for like in likes:
         payload[like.userId] = like.to_dict()
     image.likes = payload
-    return image.to_dict_inc_user_likes()
+    comments = Comment.query.filter(Comment.imageId == id).all()
+    commentPayload = {}
+    for comment in comments:
+        commentPayload[comment.imageId] = comment.comment_to_dict()
+    image.comments = commentPayload
+    return image.to_dict_inc_user_likes_comments()
 
 @image_routes.route('/<int:id>' , methods=['PATCH'])
 def update_caption(id):
@@ -78,15 +83,11 @@ def remove_like(id):
         db.session.commit()
     return "BIG SUCCESS"
 
-#Create, Read, Update, Delete
-#Read /images/5/comments
 @image_routes.route('/<int:id>/comments')
 def get_comments(id):
-    #queries to get all comments associated to imageId
     comments = Comment.query.filter(Comment.imageId == id).all()
-# comment returns a list of comments, going to have to to_dict, and do a for each loop
-    payload = {} #meant so we can put list into a dictionary
-    for comment in comments: #put each dictionary-comment into a dictionary?
+    payload = {}
+    for comment in comments:
         payload[comment.imageId] = comment.comment_to_dict()
     return payload
 
