@@ -10,6 +10,7 @@ import User from './components/User';
 import Home from './components/Home';
 import { authenticate } from './store/session';
 import Image from './components/Image'
+import CreateImage from './components/AddImage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +48,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/images/following' exact={true}>
           <Home />
+        </ProtectedRoute>
+        <ProtectedRoute path='/images/add' exact={true}>
+          <CreateImage />
         </ProtectedRoute>
         <ProtectedRoute path='/images/:imageId' exact={true} >
           <Image />

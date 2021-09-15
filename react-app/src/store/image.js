@@ -5,6 +5,24 @@ const ADD_LIKE = 'images/ADD_LIKE'
 const REMOVE_LIKE = 'images/REMOVE_LIKE'
 
 
+const ADD_IMAGE = 'images/ADD'
+
+const addImage = (image) => ({
+    type: ADD_IMAGE,
+    image
+})
+
+export const addNewImage = (imagePayload) => async(dispatch) => {
+    const res = await fetch('/api/images/add', {
+        method:"POST",
+        headers: { "Content-Type" : "application/json" },
+        body: JSON.stringify(imagePayload)
+    })
+    const image = await res.json()
+    dispatch(addImage(image))
+    return image
+}
+
 const getImage = (image) => ({
 type: GET_IMAGE,
 image,
@@ -97,6 +115,9 @@ const imageReducer = (state = initialState, action) => {
         case GET_IMAGE:
             newState.all[action.image.id] = action.image
             return newState
+
+        case ADD_IMAGE:
+            newState[action.image.id] = action.image
         case DELETE_IMAGE:
             delete newState.all[action.imageId]
             return newState
@@ -113,7 +134,6 @@ const imageReducer = (state = initialState, action) => {
             const userId2 = action.payload.userId
             console.log('userId', userId2)
             delete newState.all[imageId2].likes[userId2]
-
             return newState
         default: return state
     }

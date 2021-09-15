@@ -1,15 +1,12 @@
-from flask import Blueprint, jsonify, request
-from app.models import Image, Follower, User, Like
+from flask import Blueprint, request
+from app.models import Image, Follower, db, Like, User
 from sqlalchemy import orm
-import json
 from flask_login import current_user
-from app.models import db
+from datetime import datetime
 
 
 image_routes = Blueprint('images', __name__)
 
-# /following
-# /explore  
 
 @image_routes.route('/following')
 def following():
@@ -20,10 +17,10 @@ def following():
         images = Image.query.filter(Image.userId == element.followed)
         for image in images:
             payload.append(image.to_dict())
-    
+
     lit = dict(enumerate(payload))
     return lit
-    
+
 @image_routes.route('/<int:id>')
 def image(id):
     image = Image.query.options(orm.joinedload('poster')).get(id)
@@ -42,6 +39,22 @@ def update_caption(id):
     db.session.add(image)
     db.session.commit()
     return image.to_dict_inc_user()
+
+@image_routes.route('/add', methods=["POST"])
+def addImage():
+    data = request.json
+    image = Image(
+        userId=current_user.id,
+        caption=data['caption'],
+        imageUrl=data['imageUrl'],
+        profilePic=data['profilePic'],
+        created_at=datetime.now()
+
+    )
+    db.session.add(image)
+    db.session.commit()
+    payload = {'image': image.to_dict()}
+    return payload
     
 @image_routes.route('/<int:id>' , methods=['DELETE'])
 def delete_image(id):
@@ -66,3 +79,4 @@ def remove_like(id):
         db.session.delete(like)
         db.session.commit()
     return "BIG SUCCESS"
+

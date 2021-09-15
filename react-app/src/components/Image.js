@@ -9,10 +9,12 @@ function Image(){
     const history = useHistory()
     const {imageId} = useParams();
     const dispatch = useDispatch()
+
     const image = useSelector(state => state.images.all[imageId])
     const user = useSelector(state => state.session.user)
     const like = useSelector(state => state.images.all[imageId]?.likes[user.id])
     const [showEdit, setShowEdit] = useState(false)
+
 
 
 
@@ -21,6 +23,7 @@ function Image(){
             return;
         }
         (async () => {
+
             await dispatch(fetchImage(imageId));
           })();
     },[imageId])
@@ -72,6 +75,7 @@ function Image(){
     }
 
     return(
+
         <div className='image-page-container'>
             <img className='image-page-pic' src={image.imageUrl} alt='' />
             <div className='image-info-container'>
@@ -95,6 +99,7 @@ function Image(){
                     </div>
                 </div> 
             </div>
+
         </div>
     )
 }
