@@ -40,11 +40,14 @@ def image(id):
     for like in likes:
         payload[like.userId] = like.to_dict()
     image.likes = payload
+
     comments = Comment.query.filter(Comment.imageId == id).all()
     commentPayload = {}
     for comment in comments:
-        commentPayload[comment.imageId] = comment.comment_to_dict()
+        commentPayload[comment.id] = comment.comment_to_dict()
     image.comments = commentPayload
+
+
     return image.to_dict_inc_user_likes_comments()
 
 @image_routes.route('/<int:id>' , methods=['PATCH'])
