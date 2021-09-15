@@ -34,8 +34,9 @@ def follow(id):
 
 @user_routes.route('/<int:id>/unfollow')
 def unfollow(id):
-    follow = Follower.query.filter(Follower.follower == current_user.id, Follower.followed == id).first()
-    if follow:
-        db.session.delete(follow)
-        db.session.commit()
+    follow = Follower.query.filter(Follower.follower == current_user.id, Follower.followed == id).all()
+    if len(follow):
+        for eachfollow in follow:
+            db.session.delete(eachfollow)
+            db.session.commit()
     return "return"

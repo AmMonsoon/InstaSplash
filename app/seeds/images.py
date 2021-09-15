@@ -1,5 +1,8 @@
 from app.models import db, Image
 from datetime import datetime
+from faker import Faker
+
+faker = Faker()
 
 def seed_images():
     puppy_image = Image(
@@ -54,6 +57,11 @@ def seed_images():
     db.session.add(plant)
     db.session.add(nos)
     db.session.add(mtn)
+
+    for i in range(50):
+        image = Image(userId= faker.random_int(min=1, max=53), imageUrl= faker.image_url(), caption= faker.sentence(), profilePic=False, created_at = datetime.now())
+        db.session.add(image)
+
     db.session.commit()
 
 def undo_images():

@@ -12,7 +12,7 @@ function Image(){
 
     const image = useSelector(state => state.images.all[imageId])
     const user = useSelector(state => state.session.user)
-    const like = useSelector(state => state.images.all[imageId]?.likes[user.id])
+    const like = useSelector(state => state.images.all[imageId]?.likes?.[user.id])
     const [showEdit, setShowEdit] = useState(false)
 
 
