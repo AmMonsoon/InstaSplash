@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAllComments } from '../store/image';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ function Comment() {
 
 
     // const image = useSelector(state => state.images.all[imageId])
-    const user = useSelector(state => state.session.user)
+    // const user = useSelector(state => state.session.user)
     const comments = useSelector(state => Object.values(state.images.all[imageId]?.comments))
 
 

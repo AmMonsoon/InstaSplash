@@ -52,4 +52,3 @@ function SingleComment({ comment }) {
 }
 
 export default SingleComment
-{/* <div className="commentBody-Div" key={comment.id}>{comment?.commentBody}</div> */}
