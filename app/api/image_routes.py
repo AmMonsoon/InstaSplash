@@ -85,8 +85,8 @@ def get_comments(id):
     #queries to get all comments associated to imageId
     comments = Comment.query.filter(Comment.imageId == id).all()
 # comment returns a list of comments, going to have to to_dict, and do a for each loop
-    payload = {}
-    for comment in comments:
+    payload = {} #meant so we can put list into a dictionary
+    for comment in comments: #put each dictionary-comment into a dictionary?
         payload[comment.imageId] = comment.comment_to_dict()
     return payload
 

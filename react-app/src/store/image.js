@@ -7,9 +7,9 @@ const REMOVE_LIKE = 'images/REMOVE_LIKE'
 const GET_COMMENTS = 'images/GET_COMMENTS'
 
 
-const getComment = (imageId) => ({
+const getComment = (comment) => ({
     type: GET_COMMENTS,
-    imageId
+    comment
 })
 
 
@@ -143,11 +143,13 @@ const imageReducer = (state = initialState, action) => {
             const userId2 = action.payload.userId
             delete newState.all[imageId2].likes[userId2]
             return newState
-        // case GET_COMMENTS:
-        //     const commentImgId = action.payload.imageId
-        //     // const commentUserId = action.payload.userId
-        //     newState.all[commentImgId].comments = newState.all.comments[imageId]
-        //     return newState
+        case GET_COMMENTS:
+            // newState[action.image.id] = action.comment
+            newState.all
+            // const commentImgId = action.payload.imageId
+            // const commentUserId = action.payload.userId
+            // newState.all[commentImgId].comments = newState.all.comments[imageId]
+            return newState
         default: return state
     }
 }
