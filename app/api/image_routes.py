@@ -107,6 +107,16 @@ def add_comment(id):
     return payload
 
 
+@image_routes.route('/<int:id>/comments/<int:commentId>', methods=['PATCH'])
+def edit_comment(id, commentId):
+    commentToEdit = Comment.query.get(commentId)
+    edittedComment = request.json['commentBody']
+    commentToEdit.commentBody = edittedComment
+    db.session.add(commentToEdit)
+    db.session.commit()
+    return commentToEdit.comment_to_dict()
+
+
     # Get imageid from params, query comment table using that image id and display all of the comments for that image id, with order of most recent on top(sorted by created_at)
     # /images/5/comments/add
     # /images/5/comments/id/delete

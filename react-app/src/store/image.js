@@ -6,6 +6,25 @@ const ADD_LIKE = 'images/ADD_LIKE'
 const REMOVE_LIKE = 'images/REMOVE_LIKE'
 const GET_COMMENTS = 'images/GET_COMMENTS'
 const ADD_COMMENT = 'images/ADD_COMMENT'
+const EDIT_COMMENT = 'images/EDIT_COMMENT'
+
+const editComment = (commentBody, commentId) => ({
+    type: EDIT_COMMENT,
+    payload: {
+        commentBody,
+        commentId
+    }
+})
+
+export const editAComment = (commentBody, commentId, imageId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}/comments/${commentId}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({commentBody})
+    })
+    const edittedComment = await res.json()
+    dispatch(editComment(edittedComment, commentId))
+}
 
 const addComment = (comment, imageId) => ({
     type: ADD_COMMENT,
@@ -23,14 +42,12 @@ export const addNewComment = (comment, imageId) => async(dispatch) => {
     })
     const newComment = await res.json()
     dispatch(addComment(newComment, imageId))
-    // return newComment
 }
 
 const getComments = (comments) => ({
     type: GET_COMMENTS,
     comments
 })
-
 
 export const getAllComments = (imageId) => async(dispatch) => {
     const res = await fetch(`/api/images/${imageId}/comments`)
@@ -171,6 +188,9 @@ const imageReducer = (state = initialState, action) => {
             return newState
         case ADD_COMMENT:
             newState.all[action.payload.imageId].comments[action.payload.comment.id] = action.payload.comment
+            return newState
+            case EDIT_COMMENT:
+            newState.all[action.payload.comment.imageId].comments[action.payload.comment.id] = action.payload.comment
             return newState
         default: return state
     }
