@@ -120,4 +120,4 @@ def edit_comment(id, commentId):
     # Get imageid from params, query comment table using that image id and display all of the comments for that image id, with order of most recent on top(sorted by created_at)
     # /images/5/comments/add
     # /images/5/comments/id/delete
-    # /images/5/comments/id/edit -- can use current_user to verify and allow edit button
+    # /images/5/comments/id -- can use current_user to verify and allow edit button

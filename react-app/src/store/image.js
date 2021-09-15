@@ -8,12 +8,9 @@ const GET_COMMENTS = 'images/GET_COMMENTS'
 const ADD_COMMENT = 'images/ADD_COMMENT'
 const EDIT_COMMENT = 'images/EDIT_COMMENT'
 
-const editComment = (commentBody, commentId) => ({
+const editComment = (comment) => ({
     type: EDIT_COMMENT,
-    payload: {
-        commentBody,
-        commentId
-    }
+        comment
 })
 
 export const editAComment = (commentBody, commentId, imageId) => async(dispatch) => {
@@ -23,7 +20,7 @@ export const editAComment = (commentBody, commentId, imageId) => async(dispatch)
         body: JSON.stringify({commentBody})
     })
     const edittedComment = await res.json()
-    dispatch(editComment(edittedComment, commentId))
+    dispatch(editComment(edittedComment))
 }
 
 const addComment = (comment, imageId) => ({
@@ -190,7 +187,7 @@ const imageReducer = (state = initialState, action) => {
             newState.all[action.payload.imageId].comments[action.payload.comment.id] = action.payload.comment
             return newState
             case EDIT_COMMENT:
-            newState.all[action.payload.comment.imageId].comments[action.payload.comment.id] = action.payload.comment
+            newState.all[action.comment.imageId].comments[action.comment.id] = action.comment
             return newState
         default: return state
     }
