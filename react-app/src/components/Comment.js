@@ -22,9 +22,11 @@ function Comment() {
 
     return (
         <div>
-            {console.log("Image Id", imageId, "image", image)}
             <h4>this is the comments section</h4>
-            <h1>{comments[0].commentBody}</h1>
+            {/* need to render 5 most recent comments */}
+            {comments?.map((comment) => {
+                <div>{comment?.commentBody}</div>
+            })}
         </div>
     )
 }

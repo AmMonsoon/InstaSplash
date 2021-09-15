@@ -5,7 +5,26 @@ const DELETE_IMAGE = 'images/DELETE_IMAGE'
 const ADD_LIKE = 'images/ADD_LIKE'
 const REMOVE_LIKE = 'images/REMOVE_LIKE'
 const GET_COMMENTS = 'images/GET_COMMENTS'
+const ADD_COMMENT = 'images/ADD_COMMENT'
 
+const addComment = (comment, imageId) => ({
+    type: ADD_COMMENT,
+    payload: {
+        comment,
+        imageId
+    }
+})
+
+export const addNewComment = (comment, imageId) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}/comments/add`, {
+        method: "POST",
+        headers: { "Content-Type":"application/json" },
+        body: JSON.stringify(comment)
+    })
+    const newComment = await res.json()
+    dispatch(addComment(newComment, imageId))
+    // return newComment
+}
 
 const getComments = (comments) => ({
     type: GET_COMMENTS,
@@ -148,6 +167,9 @@ const imageReducer = (state = initialState, action) => {
                 const commentImgId = comment.imageId
                 newState.all[commentImgId].comments[comment.id] = comment
             })
+            return newState
+        case ADD_COMMENT:
+            newState.all[action.payload.imageId].comments[action.payload.comment.id] = action.payload.comment
             return newState
         default: return state
     }

@@ -6,6 +6,7 @@ import EditCaptionForm from "./EditCaptionForm"
 import { destroyImage, postLike, destroyLike } from '../store/image';
 import './Image.css'
 import Comment from './Comment';
+import AddComment from './AddComment';
 
 function Image(){
     const history = useHistory()
@@ -79,6 +80,7 @@ function Image(){
 
         <div className='image-page-container'>
             <Comment />
+            <AddComment />
             <img className='image-page-pic' src={image.imageUrl} alt='' />
             <div className='image-info-container'>
                 <h1>{image?.poster?.username}</h1>

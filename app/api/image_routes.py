@@ -50,13 +50,13 @@ def addImage():
         userId=current_user.id,
         caption=data['caption'],
         imageUrl=data['imageUrl'],
-        profilePic=data['profilePic'],
+        # profilePic=data['profilePic'],
         created_at=datetime.now()
 
     )
     db.session.add(image)
     db.session.commit()
-    payload = {'image': image.to_dict()}
+    payload = image.to_dict()
     return payload
 
 @image_routes.route('/<int:id>' , methods=['DELETE'])
@@ -88,10 +88,23 @@ def get_comments(id):
     comments = Comment.query.filter(Comment.imageId == id).all()
     payload = {}
     for comment in comments:
-        payload[comment.imageId] = comment.comment_to_dict()
+        payload[comment.id] = comment.comment_to_dict()
     return payload
 
-
+@image_routes.route('/<int:id>/comments/add', methods=['POST'])
+def add_comment(id):
+    data = request.json
+    comment = Comment(
+        userId=current_user.id,
+        imageId=id,
+        commentBody=data['commentBody'],
+        created_at=datetime.now()
+    )
+    if comment:
+        db.session.add(comment)
+        db.session.commit()
+    payload = comment.comment_to_dict()
+    return payload
 
 
     # Get imageid from params, query comment table using that image id and display all of the comments for that image id, with order of most recent on top(sorted by created_at)
