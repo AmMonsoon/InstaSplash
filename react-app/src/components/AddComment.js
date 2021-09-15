@@ -18,6 +18,7 @@ function AddComment() {
         const comment = {
             commentBody
         }
+        setCommentBody('')
         let createdComment = await dispatch(addNewComment(comment, imageId))
         if(createdComment) {
             history.push(`/images/${imageId}`)
