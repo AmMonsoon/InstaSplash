@@ -15,38 +15,37 @@ const CreateImage = () => {
     // const [profilePic, setProfilePic] = useState(null)
     const [validationErrors, setValidationErrors] = useState([])
 
-
-
     const checkImage = (url) => {
         const image = new Image();
         image.onload = function() {
           if (this.width > 0) {
             console.log("image exists");
+            setValidationErrors([])
             return true
-          }
         }
-        image.onerror = function() {
-          console.log("image doesn't exist");
+    }
+    image.onerror = function() {
+        console.log("image doesn't exist");
         //   image_tag.src = '*DEFAULT IMAGE OR NO IMAGE, IMAGE LOCATION'
         return false
-        }
-        image.src = url;
-      }
+    }
+    image.src = url;
+}
 
-    useEffect(() => {
-        const errors = [];
-        if(!checkImage(imageUrl)) errors.push("absc Please include a valid image URL")
-        setValidationErrors(errors)
-        console.log(validationErrors)
-    }, [imageUrl, dispatch])
+useEffect(() => {
+    const errors = [];
+    if(!checkImage(imageUrl)) errors.push("Please include a valid image URL")
+    setValidationErrors(errors)
+    console.log("valErr", validationErrors)
+}, [imageUrl, dispatch])
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        const image = {
-            caption,
-            imageUrl,
-            // profilePic
-        }
+const handleSubmit = async(e) => {
+    e.preventDefault();
+    const image = {
+        caption,
+        imageUrl,
+        // profilePic
+    }
         let createdImage = await dispatch(addNewImage(image))
         if(createdImage) {
             history.push(`/users/${userId}`)
