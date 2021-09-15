@@ -1,4 +1,7 @@
 from app.models import db, Follower
+from faker import Faker
+
+faker = Faker()
 
 def seed_followers():
     first_follow = Follower(follower=3, followed=2)
@@ -8,6 +11,16 @@ def seed_followers():
     db.session.add(first_follow)
     db.session.add(second)
     db.session.add(third)
+
+    for i in range(100):
+        follower = faker.random_int(min=1, max=53)
+        followed = faker.random_int(min=1, max=53)
+        while follower == followed:
+            follower = faker.random_int(min=1, max=53)
+            followed = faker.random_int(min=1, max=53)
+        follow = Follower(follower=follower, followed=followed)
+        db.session.add(follow)
+
     db.session.commit()
 
 def undo_followers():
