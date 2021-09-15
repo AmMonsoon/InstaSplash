@@ -12,8 +12,8 @@ class Image(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True))
     
     poster = db.relationship("User", back_populates="image")
-    comment = db.relationship("Comment", back_populates="image")
-    like = db.relationship("Like", back_populates="image")
+    comment = db.relationship("Comment", cascade="all,delete", back_populates="image")
+    like = db.relationship("Like", cascade="all,delete", back_populates="image")
 
 
     def to_dict(self):
@@ -37,4 +37,17 @@ class Image(db.Model):
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
                 'poster': self.poster.to_dict()
+            }
+
+    def to_dict_inc_user_likes(self):
+            return {
+                'id': self.id,
+                'userId': self.userId ,
+                'caption': self.caption,
+                'imageUrl': self.imageUrl,
+                'profilePic': self.profilePic,
+                'created_at': self.created_at,
+                'updated_at': self.updated_at,
+                'poster': self.poster.to_dict(),
+                'likes': self.likes
             }
