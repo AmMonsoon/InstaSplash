@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, Follower, db
 
@@ -40,3 +40,12 @@ def unfollow(id):
             db.session.delete(eachfollow)
             db.session.commit()
     return "return"
+
+@user_routes.route('/<int:id>', methods=["PATCH"])
+def update_profilePic(id):
+    newProfilePic = request.json['imageURL']
+    user = User.query.get(id)
+    user.profilePic = newProfilePic
+    db.session.add(user)
+    db.session.commit()
+    return "BIG SUCCESS"
