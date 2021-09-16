@@ -23,12 +23,15 @@ const getUser = (user) => ({
 })
 
 export const setProfilePic = (imageURL, userId) => async (dispatch) => {
-    const res = await fetch(`api/users/${userId}`, {
+    const res = await fetch(`/api/users/${userId}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({imageURL})
     })
-    return 
+    if (res.ok) {
+        return "success" 
+
+    }
 }
 
 export const fetchUser = (userId) => async(dispatch) => {

@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
-import { useHistory } from "react-router-dom"
 import { setProfilePic } from "../store/user";
 
 
 const EditProfilePicture = ({currentUrl, hideEdit}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const userId = useSelector(state => state.session.user.id)
 
@@ -15,47 +13,41 @@ const EditProfilePicture = ({currentUrl, hideEdit}) => {
     // const [profilePic, setProfilePic] = useState(null)
     const [validationErrors, setValidationErrors] = useState([])
 
-    const checkImage = (url) => {
-        const image = new Image();
-        image.onload = function() {
-          if (this.width > 0) {
-            console.log("image exists");
-            setValidationErrors([])
-            return true
+    const checkImage = async(url) => {
+        return new Promise((resolve, reject) => {
+            const image = new Image();
+            image.onload = function() {
+              if (this.width > 0) {
+                resolve(true)
+            }
         }
-    }
-    image.onerror = function() {
-        console.log("image doesn't exist");
-        //   image_tag.src = '*DEFAULT IMAGE OR NO IMAGE, IMAGE LOCATION'
-        return false
-    }
-    image.src = url;
+        image.onerror = function () {
+            resolve(false)
+        }
+        image.src = url;
+        })  
 }
 
-useEffect(() => {
-    const errors = [];
-    if(!checkImage(imageUrl)) errors.push("Please include a valid image URL")
-    setValidationErrors(errors)
-    console.log("valErr", validationErrors)
-}, [imageUrl, dispatch, validationErrors])
-
-const handleSubmit = async(e) => {
-    e.preventDefault();
-   
-        let createdImage = await dispatch(setProfilePic(imageUrl, userId))
-        if(createdImage) {
-            history.push(`/users/${userId}`)
+const handleSubmit = async(userId) => {
+        const errors = [];
+        if(!checkImage(imageUrl)) errors.push("Please include a valid image URL")
+        if (errors.length) {
+            setValidationErrors(errors)
+        } else {
+            console.log('userid', userId)
+            let createdImage = await dispatch(setProfilePic(imageUrl, userId))
+            if(createdImage) {
+                hideEdit()
+            }
         }
 
-    }
 
-   
-  
+    }
 
     return(
         <section>
             <h1>Edit Profile Pic Form</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={() => handleSubmit(userId)}>
                 <input
                 placeholder="Image URL"
                 type="text"
@@ -63,8 +55,8 @@ const handleSubmit = async(e) => {
                 value={imageUrl}
                 onChange={((e) => setImageUrl(e.target.value))}
                 />
-                <button type="submit" disabled={validationErrors.length > 0}>Submit</button>
-                <button type="click" onClick={e => hideEdit(e)}>Cancel</button>
+                <button type="submit">Submit</button>
+                <button type="click" onClick={hideEdit}>Cancel</button>
 
             </form>
         </section>

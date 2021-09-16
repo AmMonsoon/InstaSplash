@@ -42,8 +42,7 @@ const handleFollow = async(e) => {
         setShowEditProfilePic(true)
     }
 
-    const hideEdit = (e) => {
-        e.preventDefault()
+    const hideEdit = () => {
         setShowEditProfilePic(false)
     }
 
