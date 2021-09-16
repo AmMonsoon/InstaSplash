@@ -1,4 +1,51 @@
 .following__wrapper{
+    /* border: 1px dotted black; */
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.following__allFollowing{
+    /* border: 3px dotted red; */
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 50%;
+    padding: none;
+
+}
+
+.following__ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.following__li {
+    height: 30vh;
+    flex-grow: 1;
+    margin: 8px;
+    background-color: black;
+    /* above line if commented in will darken on hover */
+  }
+
+
+.following__singleImage--image {
+    max-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+}
+
+.following__li img:hover {
+    opacity: .5;
+}
+
+
+/* .following__wrapper{
     border: 1px dotted black;
     justify-content: center;
     align-items: center;
@@ -8,7 +55,7 @@
 }
 
 .following__allFollowing--gallery{
-    /* border: 3px dotted red; */
+    border: 3px dotted red;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -16,9 +63,9 @@
     max-width: 65vw;
 
 }
-/* will have bg image that is what we want to display */
+will have bg image that is what we want to display
 .singleImg-div {
-    /* border: 3px dotted black; */
+    border: 3px dotted black;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -26,4 +73,4 @@
     width: 325px;
     margin: 12px;
 
-}
+} */
