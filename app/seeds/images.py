@@ -1,6 +1,8 @@
 from app.models import db, Image
 from datetime import datetime
 from faker import Faker
+from flask import request
+from .randomImages import randomArr
 
 faker = Faker()
 
@@ -58,8 +60,10 @@ def seed_images():
     db.session.add(nos)
     db.session.add(mtn)
 
-    for i in range(50):
-        image = Image(userId= faker.random_int(min=1, max=53), imageUrl= faker.image_url(), caption= faker.sentence(), profilePic=False, created_at = datetime.now())
+
+    for i in range(1000):
+
+        image = Image(userId= faker.random_int(min=1, max=53), imageUrl= randomArr[i], caption= faker.sentence(), profilePic=False, created_at = datetime.now())
         db.session.add(image)
 
     db.session.commit()
