@@ -43,31 +43,3 @@
 .following__li img:hover {
     opacity: .5;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-.conttest:hover img {
-    display: block;
-    background: rgba(0,0,0,0.3)
-
-}
-
-.test {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0);
-    transition: background 0.5s ease;
-  } */
