@@ -6,7 +6,7 @@
 }
 
 .navbar__wrapper{
-    /* border: 1px solid red; */
+
     display: flex;
     justify-content: space-between;
     width: 70vw;
@@ -14,7 +14,7 @@
 }
 
 .navbar__logo--wrapper {
-    /* border: 4px dotted black; */
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,8 +23,6 @@
 }
 
 .navbar__logo--image {
-    /* border: 1px solid red; */
-    /* height: 40px; */
     width: 40px;
     display: flex;
     justify-content: center;
@@ -37,8 +35,6 @@
 }
 
 .navbar__buttons--wrapper {
-    /* border: 4px dotted black; */
-    /* border: 1px solid red; */
     width: 200px;
     display: flex;
     justify-content: space-evenly;
@@ -51,9 +47,6 @@
     color: rgba(0,0,0,0.2);
 }
 
-/* .navbar__buttons--wrapper--button:hover {
-    opacity: 70%
-} */
 
 .navbar__buttons--wrapper__button {
     border: 3px solid rgba(0,0,0,0.2);
