@@ -2,6 +2,7 @@ const ADD_FOLLOW = 'users/ADD_FOLLOW'
 const REMOVE_FOLLOW = 'users/REMOVE_FOLLOW'
 const GET_USER = 'users/GET_USER'
 
+
 const addFollow = (followerId, followedId) => ({
     type: ADD_FOLLOW,
     payload:{
@@ -20,6 +21,18 @@ const getUser = (user) => ({
     type: GET_USER,
     user
 })
+
+export const setProfilePic = (imageURL, userId) => async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({imageURL})
+    })
+    if (res.ok) {
+        return "success" 
+
+    }
+}
 
 export const fetchUser = (userId) => async(dispatch) => {
     const res = await fetch(`/api/users/${userId}`)
