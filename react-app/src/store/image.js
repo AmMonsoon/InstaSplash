@@ -1,5 +1,6 @@
 const ADD_IMAGE = 'images/ADD'
 const GET_FOLLOWING = 'images/GET_FOLLOWING'
+const GET_EXPLORE = 'images/GET_EXPLORE'
 const GET_IMAGE = 'images/GET_IMAGE'
 const DELETE_IMAGE = 'images/DELETE_IMAGE'
 const ADD_LIKE = 'images/ADD_LIKE'
@@ -159,11 +160,23 @@ const getFollowing = (images) => ({
     type: GET_FOLLOWING,
     images,
 })
+
+const getNotFollowing = (images) => ({
+    type: GET_EXPLORE,
+    images
+})
 export const getFollow = () => async (dispatch) => {
     const res = await fetch('/api/images/following')
     const images = await res.json()
     dispatch(getFollowing(images))
     return images
+}
+
+export const getExplore = () => async (dispatch) => {
+    const res = await fetch('/api/images/explore')
+    const exploreImages = await res.json()
+    dispatch(getNotFollowing(exploreImages))
+    return exploreImages
 }
 
 const initialState = { all:{}, following: {}, notFollowing: {}}
@@ -173,6 +186,13 @@ const imageReducer = (state = initialState, action) => {
         case GET_FOLLOWING:
             Object.values(action.images).forEach(image => {
                 newState.following[image.id] = image
+                newState.all[image.id] = image
+            })
+            return newState
+        case GET_EXPLORE:
+            Object.values(action.images).forEach(image => {
+                console.log(image)
+                newState.notFollowing[image.id] = image
                 newState.all[image.id] = image
             })
             return newState

@@ -59,6 +59,11 @@ const handleSubmit = async(e) => {
     return(
         <section>
             <h1>create image form</h1>
+             <div>
+            {validationErrors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+            </div>
             <form onSubmit={handleSubmit}>
                 <input
                 placeholder="Caption"

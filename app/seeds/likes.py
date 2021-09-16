@@ -7,8 +7,8 @@ def seed_likes():
     first_like = Like(userId=3, imageId=1) 
     db.session.add(first_like)
 
-    for i in range(600):
-        like = Like(userId=faker.random_int(min=1, max=53), imageId= faker.random_int(min=1, max=60))
+    for i in range(2000):
+        like = Like(userId=faker.random_int(min=1, max=53), imageId= faker.random_int(min=1, max=1000))
         db.session.add(like)
         
     db.session.commit()
