@@ -16,7 +16,7 @@
     max-width: 65vw;
 
 }
-
+/* will have bg image that is what we want to display */
 .singleImg-div {
     /* border: 3px dotted black; */
     background-size: cover;
@@ -27,4 +27,3 @@
     margin: 12px;
 
 }
-
