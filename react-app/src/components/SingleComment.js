@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditCommentForm from './EditCommentForm';
 import { deleteComment } from '../store/image';
+import "./SingleComment.css"
 
 function SingleComment({ comment }) {
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ function SingleComment({ comment }) {
 
 
     return (
-        <div>
+        <div className="singleComment__wrapper">
             {commentContent}
         </div>
     )
