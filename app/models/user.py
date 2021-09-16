@@ -8,6 +8,7 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    profilePic = db.Column(db.Text, nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     firstName = db.Column(db.String(50), nullable=False)
     lastName = db.Column(db.String(50), nullable=False)
@@ -34,7 +35,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'profilePic': self.profilePic
         }
 
     def to_dict_inc_followers(self):
@@ -42,5 +44,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'followers': self.followers
+            'followers': self.followers,
+            'profilePic': self.profilePic
         }

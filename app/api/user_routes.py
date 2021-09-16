@@ -40,3 +40,12 @@ def unfollow(id):
             db.session.delete(eachfollow)
             db.session.commit()
     return "return"
+
+@user_routes.route('/<int:id>', methods=["PATCH"])
+def update_profilePic(id):
+    newProfilePic = request.json['imageURL']
+    user = User.query.get(id)
+    user.profilePic = newProfilePic
+    db.session.add(user)
+    db.session.commit(user)
+    return "BIG SUCCESS"

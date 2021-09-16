@@ -6,17 +6,17 @@ faker = Faker()
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', firstName="Demo", lastName="User")
+        username='Demo', profilePic='https://source.unsplash.com/random', email='demo@aa.io', password='password', firstName="Demo", lastName="User")
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', firstName="Marnarious", lastName="Marn")
+        username='marnie', profilePic='https://source.unsplash.com/random', email='marnie@aa.io', password='password', firstName="Marnarious", lastName="Marn")
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', firstName="James", lastName="Chipson")
+        username='bobbie', profilePic='https://source.unsplash.com/random', email='bobbie@aa.io', password='password', firstName="James", lastName="Chipson")
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     for i in range(50):
-        user = User(username = faker.simple_profile()['username'],email = faker.simple_profile()['mail'],password = faker.password(),firstName = faker.first_name(),lastName = faker.last_name())
+        user = User(username = faker.simple_profile()['username'], profilePic='https://source.unsplash.com/random', email = faker.simple_profile()['mail'],password = faker.password(),firstName = faker.first_name(),lastName = faker.last_name())
         db.session.add(user)
 
     db.session.commit()
