@@ -40,6 +40,7 @@ const LoginForm = () => {
     <div className="login-page-container">
       <div className="login-section-container">
         <h1>Instasplash</h1>
+        <h2>Log In</h2>
         <form onSubmit={onLogin}>
           <div>
             {errors.map((error, ind) => (

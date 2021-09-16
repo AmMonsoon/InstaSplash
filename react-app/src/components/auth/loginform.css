@@ -55,3 +55,8 @@ html, body, #root {
     align-self: center;
     width: 50%;
 }
+
+.login-section-container > h2 {
+    padding: 0;
+    margin: 0;
+}
