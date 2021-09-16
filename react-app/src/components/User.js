@@ -42,8 +42,9 @@ const handleFollow = async(e) => {
         setShowEditProfilePic(true)
     }
 
-    const hideEdit = () => {
-        setShowEditProfilePic(false)
+  const hideEdit = async () => {
+      await dispatch(fetchUser(userId))
+      setShowEditProfilePic(false)
     }
 
   if (showEditProfilePic) {
