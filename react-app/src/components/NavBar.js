@@ -39,8 +39,6 @@ const NavBar = ({userId}) => {
               </div>
             </NavLink>
 
-          {/* <i class="far fa-user">SINGLE USER</i> */}
-          {/* <i class="fas fa-angle-double-right">DOUBLE ARROW DOWN FOR LOGOUT</i> */}
           <div className="navbar__buttons--wrapper__button"><LogoutButton /></div>
         </div>
       </div>
