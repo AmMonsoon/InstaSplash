@@ -6,12 +6,10 @@ import "./NavBar.css"
 import logo from "../logo.png"
 
 
-
 const NavBar = ({userId}) => {
   return (
     <div className="navbar__container">
       <div className="navbar__wrapper">
-
           <NavLink to='/images/following' exact={true} activeClassName='active'>
         <div className="navbar__logo--wrapper">
             <img className="navbar__logo--image" src={logo} alt=""/>
