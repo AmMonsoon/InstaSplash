@@ -7,40 +7,38 @@ import logo from "../logo.png"
 
 
 
-const NavBar = () => {
+const NavBar = ({userId}) => {
   return (
     <div className="navbar__container">
       <div className="navbar__wrapper">
-          <NavLink to='/' exact={true} activeClassName='active'>
+
+          <NavLink to='/images/following' exact={true} activeClassName='active'>
         <div className="navbar__logo--wrapper">
             <img className="navbar__logo--image" src={logo} alt=""/>
         </div>
           </NavLink>
+
         {/* <div className="navbar__searchToBe"></div> */}
         <div className="navbar__buttons--wrapper">
-            <NavLink to='/' exact={true} activeClassName='active'>
+            <NavLink to='/images/following' exact={true} activeClassName='active'>
               <div className="navbar__buttons--wrapper__button">
-                <i class="fas fa-home"></i>
+                  <i class="fas fa-home"></i>
               </div>
             </NavLink>
-            <NavLink to='/login' exact={true} activeClassName='active'>
+
+            <NavLink to={`/users/${userId}`} exact={true} activeClassName='active'>
               <div className="navbar__buttons--wrapper__button">
-                  <i class="fas fa-sign-in-alt"></i>
-              </div >
-            </NavLink>
-            <NavLink to='/sign-up' exact={true} activeClassName='active'>
-              <div className="navbar__buttons--wrapper__button">
-                  <i class="fas fa-user-plus"></i>
+                <i class="far fa-user"></i>
+                {/* <i class="fas fa-home"></i> */}
               </div>
             </NavLink>
-            <NavLink to='/users' exact={true} activeClassName='active'>
-              <div className="navbar__buttons--wrapper__button">
-                  <i class="fas fa-users"></i>
+
+            <NavLink to='/images/explore' exact={true} activeClassName='active'>
+            <div className="navbar__buttons--wrapper__button">
+                <i class="far fa-compass"></i>
               </div>
             </NavLink>
-          {/* <i class="far fa-user">SINGLE USER</i> */}
-          {/* <i class="far fa-compass">COMPASS FOR EXPLORE</i> */}
-          {/* <i class="fas fa-angle-double-right">DOUBLE ARROW DOWN FOR LOGOUT</i> */}
+
           <div className="navbar__buttons--wrapper__button"><LogoutButton /></div>
         </div>
       </div>
