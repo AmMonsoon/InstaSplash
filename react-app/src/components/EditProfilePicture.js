@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
-
 import { setProfilePic } from "../store/user";
 
 
 const EditProfilePicture = ({currentUrl, hideEdit}) => {
     const dispatch = useDispatch();
-
     const userId = useSelector(state => state.session.user.id)
 
     const [imageUrl, setImageUrl] = useState(currentUrl);
@@ -28,16 +26,18 @@ const EditProfilePicture = ({currentUrl, hideEdit}) => {
         })  
 }
 
-const handleSubmit = async(userId) => {
+    const handleSubmit = async (userId, e) => {
+        e.preventDefault()
         const errors = [];
-        if(!checkImage(imageUrl)) errors.push("Please include a valid image URL")
+        let checkedImage = await checkImage(imageUrl)
+        if(!checkedImage) errors.push("Please include a valid image URL")
         if (errors.length) {
             setValidationErrors(errors)
         } else {
             console.log('userid', userId)
             let createdImage = await dispatch(setProfilePic(imageUrl, userId))
             if(createdImage) {
-                hideEdit()
+                await hideEdit()
             }
         }
 
@@ -47,7 +47,12 @@ const handleSubmit = async(userId) => {
     return(
         <section>
             <h1>Edit Profile Pic Form</h1>
-            <form onSubmit={() => handleSubmit(userId)}>
+            <div>
+            {validationErrors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+            <form onSubmit={(e) => handleSubmit(userId, e)}>
                 <input
                 placeholder="Image URL"
                 type="text"
