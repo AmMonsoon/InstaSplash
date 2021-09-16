@@ -20,18 +20,14 @@ function Home(){
     return (
 
         <div className='following__wrapper'>
-            <div className="following__allFollowing">
-                <ul className="following__ul">
+            <div className="following__allFollowing--gallery">
                 {followingImages.map((image) =>
-                    // <div className="following__li--div" key={image.id}>
-                        <li className="following__li">
-                            <NavLink to={`/images/${image.id}`}>
-                                <img className="following__singleImage--image" src={image.imageUrl} alt=""></img>
-                            </NavLink>
-                        </li>
-                    //  </div>
+                        <NavLink to={`/images/${image.id}`}>
+                            <div className="singleImg-div" key={image.id} style={{backgroundImage: 'url(' + image.imageUrl + ')'}}>
+                            </div>
+                            {/* <img className="following__singleImage--image" src={image.imageUrl} alt=""></img> */}
+                        </NavLink>
                 )}
-                </ul>
             </div>
        </div>
         // <>
