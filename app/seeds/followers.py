@@ -21,6 +21,10 @@ def seed_followers():
         follow = Follower(follower=follower, followed=followed)
         db.session.add(follow)
 
+    randomUsers = [22,40,51,18,13]
+    for randomUser in randomUsers:
+        follow2 = Follower(follower=1, followed = randomUser)
+        db.session.add(follow2)
     db.session.commit()
 
 def undo_followers():
