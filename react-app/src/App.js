@@ -52,6 +52,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
         <ProtectedRoute path='/images/explore' exact={true}>
+          <NavBar userId={currentUser?.id}/>
           <Explore />
         </ProtectedRoute>
         <ProtectedRoute path='/images/following' exact={true}>
