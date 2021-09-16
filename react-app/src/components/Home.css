@@ -22,12 +22,14 @@
     list-style: none;
     margin: 0px;
     padding: 0px;
-  }
+}
 
 .following__li {
     height: 30vh;
     flex-grow: 1;
-    margin: 10px;
+    margin: 8px;
+    background-color: black;
+    /* above line if commented in will darken on hover */
   }
 
 
@@ -36,6 +38,10 @@
     min-width: 100%;
     object-fit: cover;
     vertical-align: bottom;
+}
+
+.following__li img:hover {
+    opacity: .5;
 }
 
 
@@ -49,7 +55,7 @@
 
 
 
-/* 
+/*
 .conttest:hover img {
     display: block;
     background: rgba(0,0,0,0.3)
