@@ -3,6 +3,7 @@ from app.models import Image, Follower, db, Like, User, Comment
 from sqlalchemy import orm, desc
 from flask_login import current_user
 from datetime import datetime
+import random
 
 
 image_routes = Blueprint('images', __name__)
@@ -29,6 +30,36 @@ def following():
 
             image.comments = commentPayload
             payload.append(image.to_dict_inc_user_likes_comments())
+    lit = dict(enumerate(payload))
+    return lit
+
+@image_routes.route('/explore')
+def explore():
+    following = Follower.query.filter(Follower.follower == current_user.id).all()
+    followedUsers = [follow.followed for follow in following]
+    notFollowing = User.query.filter(User.id.not_in(followedUsers)).all()
+    
+    random.shuffle(notFollowing)
+    notFollowingLimit = [notFollowing[i] for i in range(5)]
+    payload = []
+    for element in notFollowingLimit:
+        images = Image.query.filter(Image.userId == element.id)
+        for image in images:
+
+            likes = Like.query.filter(Like.imageId == image.id).all()
+            payload2 = {}
+            for like in likes:
+                payload2[like.userId] = like.to_dict()
+            image.likes = payload2
+
+            comments = Comment.query.filter(Comment.imageId == image.id).all()
+            commentPayload = {}
+            for comment in comments:
+                commentPayload[comment.imageId] = comment.comment_to_dict()
+
+            image.comments = commentPayload
+            payload.append(image.to_dict_inc_user_likes_comments())
+    
     lit = dict(enumerate(payload))
     return lit
 

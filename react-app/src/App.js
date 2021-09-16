@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Home from './components/Home';
+import Explore from './components/Explore'
 import { authenticate } from './store/session';
 import Image from './components/Image'
 import CreateImage from './components/AddImage';
@@ -45,6 +46,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
+        </ProtectedRoute>
+        <ProtectedRoute path='/images/explore' exact={true}>
+          <Explore />
         </ProtectedRoute>
         <ProtectedRoute path='/images/following' exact={true}>
           <Home />
