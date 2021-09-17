@@ -4,6 +4,8 @@ import { useDispatch, useSelector} from 'react-redux';
 import { authenticate } from '../store/session';
 import { postFollow, destroyFollow, fetchUser } from '../store/user'
 import EditProfilePicture from './EditProfilePicture';
+import "./User.css"
+
 function User() {
   const dispatch = useDispatch()
   const [showEditProfilePic, setShowEditProfilePic] = useState(false)
@@ -25,7 +27,7 @@ function User() {
   if (!user) {
     return null;
   }
-  
+
 
   const handleUnfollow = async(e) => {
     e.preventDefault()
@@ -50,30 +52,43 @@ const handleFollow = async(e) => {
   if (showEditProfilePic) {
     content = <EditProfilePicture hideEdit={hideEdit} currentUrl={ user.profilePic }/>
   } else {
-    content =    <>
-      <div>
-        { currentUser.id !== Number(userId) && follow && <button onClick={e => handleUnfollow(e)}>Unfollow</button> }
-        { currentUser.id !== Number(userId) && !follow && <button onClick={e => handleFollow(e)}>Follow</button>}
-      </div>
-      <ul>
-        <li>
-          <strong>Profile Pic</strong>
-          <div>
+    content =
+      <div className="userPage__wrapper">
+
+        <div className="userPage__leftCol">
+
+          <div className="userPage__profilePic">
+            <img src={user?.profilePic} alt=""></img>
+          </div>
+        </div>
+
+        <div className="userPage__rightCol">
+
+          <div className="userPage__follow">
+            { currentUser.id !== Number(userId) && follow && <button onClick={e => handleUnfollow(e)}>Unfollow</button> }
+            { currentUser.id !== Number(userId) && !follow && <button onClick={e => handleFollow(e)}>Follow</button>}
+          </div>
+
+          <div className="userPage__profilePic--editButton">
             {currentUser.id === Number(userId) && <button onClick={e => displayEdit(e)}> Edit Profile Pic</button>}
           </div>
-          <img src={user?.profilePic} alt=""></img>
-        </li>
-        <li>
-          <strong>User Id</strong> {userId}
-        </li>
-        <li>
-          <strong>Username</strong> {user?.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user?.email}
-        </li>
-      </ul>
-    </>
+
+          <div className="userPage__info--wrapper">
+            <div className="userPage__info">
+              <strong>User Id</strong> {userId}
+              </div>
+          </div>
+
+          <div className="userPage__info">
+            <strong>Username</strong> {user?.username}
+          </div>
+
+          <div className="userPage__info">
+            <strong>Email</strong> {user?.email}
+          </div>
+
+        </div>
+      </div>
   }
 
   return (
