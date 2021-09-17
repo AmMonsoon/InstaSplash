@@ -50,7 +50,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/images/following' />;
+    return <Redirect to='/images/explore' />;
   }
 
   return (
