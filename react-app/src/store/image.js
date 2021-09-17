@@ -191,7 +191,6 @@ const imageReducer = (state = initialState, action) => {
             return newState
         case GET_EXPLORE:
             Object.values(action.images).forEach(image => {
-                console.log(image)
                 newState.notFollowing[image.id] = image
                 newState.all[image.id] = image
             })

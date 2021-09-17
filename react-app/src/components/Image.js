@@ -31,6 +31,14 @@ function Image(){
           })();
     },[imageId, dispatch])
 
+    useEffect( () => {
+        if (like) {
+            document.getElementById("heart")?.setAttribute("class", "fas fa-heart fa-lg")
+        } else {
+            document.getElementById("heart")?.setAttribute("class", "far fa-heart fa-lg")
+        }
+    }, [like])
+
     if (!image) {
         return null;
     }
@@ -53,11 +61,11 @@ function Image(){
         captionContent = (
         <>  
             <div className="image-page-caption">
-                <img src={image?.poster?.profilePic}  className="user-profilepic-small"></img>
+                <img src={image?.poster?.profilePic}  className="user-profilepic-small" alt=""></img>
                 <NavLink to={`/users/${image?.poster?.id}`} className="image-page-caption-username">{image?.poster?.username}</NavLink>
                 <p>{imageCaption}</p>
             </div>
-             {user.id === image?.userId && <div onClick={displayEdit}><i class="fas fa-edit"></i></div>}
+             {user.id === image?.userId && <div onClick={displayEdit}><i className="fas fa-edit"></i></div>}
         </>
         )
     }
@@ -70,13 +78,11 @@ function Image(){
 
     const handleUnlike = async(e) => {
         e.preventDefault()
-        document.getElementById("heart").setAttribute("class", "far fa-heart fa-lg")
         await dispatch(destroyLike(imageId, user.id))
     }
 
     const handleLike = async(e) => {
         e.preventDefault()
-        document.getElementById("heart").setAttribute("class", "fas fa-heart fa-lg")
         await dispatch(postLike(imageId, user.id))
     }
 
@@ -97,7 +103,7 @@ function Image(){
                 <img className='image-page-pic' src={image.imageUrl} alt='' />
                 <div className='image-info-container'>
                     <div className="image-user-container">
-                        <img src={image?.poster?.profilePic}  className="user-profilepic-small"></img>
+                        <img src={image?.poster?.profilePic}  className="user-profilepic-small" alt=''></img>
                         <NavLink to={`/users/${image?.poster.id}`} className="image-poster-username">{image?.poster?.username}</NavLink>
                         <div className="delete-image">
                         {
@@ -117,7 +123,7 @@ function Image(){
                     <div className="image-likes-comments">
                         <div className="image-likes-and-btn">
                             <div id="heart-div" className="image-likes-btn" onClick={e => handleBothLikes(e)}>
-                                <i id="heart" class="far fa-heart fa-lg"></i>
+                                <i id="heart" className="far fa-heart fa-lg"></i>
                             </div>
                             <div>
                                 {image.likes && Object.keys(image?.likes).length} likes

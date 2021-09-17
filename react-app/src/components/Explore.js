@@ -24,7 +24,7 @@ function Home(){
                 <ul className="following__ul">
                 {exploreImages.map((image) =>
                     // <div className="following__li--div" key={image.id}>
-                        <li className="following__li">
+                        <li key={image.id} className="following__li">
                             <NavLink to={`/images/${image.id}`}>
                                 <img className="following__singleImage--image" src={image.imageUrl} alt=""></img>
                             </NavLink>
@@ -34,12 +34,6 @@ function Home(){
                 </ul>
             </div>
        </div>
-        // <>
-        //     {console.log('user' + user)}
-        //     <h1>
-        //         Hello youve reached the Home Page
-        //     </h1>
-        // </>
     )
 }
 

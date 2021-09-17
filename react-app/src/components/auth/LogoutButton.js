@@ -19,7 +19,7 @@ const LogoutButton = () => {
 
   return (
     <button className="logout_button" onClick={onLogout} style={buttonStyle}>
-      <i class="fas fa-angle-double-right"></i>
+      <i className="fas fa-angle-double-right"></i>
 
     </button>
 

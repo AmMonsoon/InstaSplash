@@ -29,11 +29,6 @@ function AddComment() {
         }
     }
 
-    const handleCancel = async(e) => {
-        e.preventDefault();
-        history.push(`/images/${imageId}`)
-    }
-
     return (
         <section>
             <form onSubmit={handleSubmit}>

@@ -34,7 +34,6 @@ const EditProfilePicture = ({currentUrl, hideEdit}) => {
         if (errors.length) {
             setValidationErrors(errors)
         } else {
-            console.log('userid', userId)
             let createdImage = await dispatch(setProfilePic(imageUrl, userId))
             if(createdImage) {
                 await hideEdit()

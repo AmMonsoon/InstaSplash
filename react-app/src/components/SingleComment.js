@@ -34,15 +34,15 @@ function SingleComment({ comment }) {
         commentContent = (
             <>
                 <div className="comment-body-container">
-                    <img className="user-profilepic-small" src={comment?.user?.profilePic}/>
+                    <img alt='' className="user-profilepic-small" src={comment?.user?.profilePic}/>
                     <NavLink className="single-comment-username" to={`/users/${comment?.userId}`}>{comment?.user?.username}</NavLink>
                     <div className="comment-body-p">{comment.commentBody}</div>
                 </div>
             {
                 comment?.userId === user.id &&
                 <div className="edit-comment-btns">
-                    <div className="edit-comment-btn" onClick={displayEdit}><i class="fas fa-edit"></i></div>
-                    <div onClick={(e) => handleDelete(e)}><i class="far fa-trash-alt"></i></div>
+                    <div className="edit-comment-btn" onClick={displayEdit}><i className="fas fa-edit"></i></div>
+                    <div onClick={(e) => handleDelete(e)}><i className="far fa-trash-alt"></i></div>
                 </div>
             }
         </>

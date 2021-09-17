@@ -67,8 +67,9 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password'],
             firstName=form.data['firstName'],
-            lastName=form.data['lastName']
+            lastName=form.data['lastName'],
         )
+        user.profilePic = "https://images-ext-2.discordapp.net/external/JJr4isfSVMULzeIynJrXmcYmWKH6xJoo7JW8wJ3oKis/https/www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png"
         db.session.add(user)
         db.session.commit()
         login_user(user)

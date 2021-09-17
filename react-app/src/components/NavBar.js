@@ -20,27 +20,27 @@ const NavBar = ({userId}) => {
         <div className="navbar__buttons--wrapper">
             <NavLink to='/images/following' exact={true} activeClassName='active'>
               <div className="navbar__buttons--wrapper__button">
-                  <i class="fas fa-home"></i>
+                  <i className="fas fa-home"></i>
               </div>
             </NavLink>
 
             <NavLink to={`/images/add`} exact={true} activeClassName='active'>
               <div className="navbar__buttons--wrapper__button">
-                <i class="fas fa-plus"></i>
-                {/* <i class="fas fa-home"></i> */}
+                <i className="fas fa-plus"></i>
+                {/* <i className="fas fa-home"></i> */}
               </div>
             </NavLink>
 
             <NavLink to={`/users/${userId}`} exact={true} activeClassName='active'>
               <div className="navbar__buttons--wrapper__button">
-                <i class="far fa-user"></i>
-                {/* <i class="fas fa-home"></i> */}
+                <i className="far fa-user"></i>
+                {/* <i className="fas fa-home"></i> */}
               </div>
             </NavLink>
 
             <NavLink to='/images/explore' exact={true} activeClassName='active'>
             <div className="navbar__buttons--wrapper__button">
-                <i class="far fa-compass"></i>
+                <i className="far fa-compass"></i>
               </div>
             </NavLink>
 

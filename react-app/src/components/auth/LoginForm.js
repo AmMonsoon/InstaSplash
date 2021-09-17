@@ -90,10 +90,10 @@ const LoginForm = () => {
         <div className='about-me-section'>
               
             
-              <a href='https://github.com/cpowers1203' target='_blank'><img src={Pat}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Pat}/></a>
-              <a href='https://github.com/AmMonsoon' target='_blank'><img src={Lily}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Lily}/></a>
-              <a href='https://github.com/penced0513' target='_blank'><img src={daniel}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = daniel}/></a>
-              <a href='https://github.com/WellerJay118' target='_blank'><img src={jacob}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = jacob}/></a>
+              <a href='https://github.com/cpowers1203' ><img src={Pat}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Pat}/></a>
+              <a href='https://github.com/AmMonsoon' ><img src={Lily}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Lily}/></a>
+              <a href='https://github.com/penced0513' ><img src={daniel}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = daniel}/></a>
+              <a href='https://github.com/WellerJay118' ><img src={jacob}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = jacob}/></a>
               
              
         </div>

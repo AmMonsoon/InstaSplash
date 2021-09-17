@@ -57,9 +57,7 @@ const handleFollow = async(e) => {
       <div className="userPage__wrapper">
         <div className="userPage__leftCol" style={{backgroundImage: 'url(' + user?.profilePic + ')'}}>
 
-          {/* <div className="userPage__profilePic"> */}
-            {/* <img src={user?.profilePic} alt=""></img> */}
-          {/* </div> */}
+
         </div>
 
         <div className="userPage__rightCol">

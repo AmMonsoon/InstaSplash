@@ -19,8 +19,8 @@ function EditCommentForm({ oldComment, hideEdit, commentId }) {
         <div>
             <textarea value={commentBody} onChange={(e) => setCommentBody(e.target.value)} />
             <div className="edit-caption-btn">
-                <div className="edit-caption-btn" onClick={(e) => submitEdit(e)}><i class="fas fa-sync-alt"></i></div>
-                <div className="edit-caption-btn" onClick={hideEdit}><i class="far fa-times-circle"></i></div>
+                <div className="edit-caption-btn" onClick={(e) => submitEdit(e)}><i className="fas fa-sync-alt"></i></div>
+                <div className="edit-caption-btn" onClick={hideEdit}><i className="far fa-times-circle"></i></div>
             </div>
         </div>
 

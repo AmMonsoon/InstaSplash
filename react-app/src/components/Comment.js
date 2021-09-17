@@ -16,12 +16,8 @@ function Comment() {
         })()
     }, [imageId, dispatch])
 
-    // const image = useSelector(state => state.images.all[imageId])
-    // const user = useSelector(state => state.session.user)
+
     const comments = useSelector(state => Object.values(state.images.all[imageId]?.comments))
-    let commentsArr
-    if (comments) commentsArr = Object.values(comments)
-    const image = useSelector(state => state.images.all[imageId])
 
     return (
         <div>                
