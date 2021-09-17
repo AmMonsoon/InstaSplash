@@ -4,6 +4,11 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import "./loginform.css"
 import logo from "../../logo.png"
+import Pat from "../../images/Pat.JPG"
+import Lily from "../../images/Lily.JPG"
+import daniel from "../../images/daniel.jpg"
+import jacob from "../../images/jacob.jpg"
+import github from "../../images/github.png"
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -11,6 +16,11 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+
+ 
+
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -36,6 +46,7 @@ const LoginForm = () => {
   if (user) {
     return <Redirect to='/images/following' />;
   }
+
 
   return (
     <div className="login-page-container">
@@ -75,6 +86,16 @@ const LoginForm = () => {
         <button className="login-demo-btn" onClick={loginDemo}>Demo</button>
         <div className="login__signup">
           Don't have an account? <NavLink className="login-page-signup-link" to="/sign-up">Sign Up</NavLink>
+        </div>
+        <div className='about-me-section'>
+              
+            
+              <a href='https://github.com/cpowers1203' target='_blank'><img src={Pat}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Pat}/></a>
+              <a href='https://github.com/AmMonsoon' target='_blank'><img src={Lily}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Lily}/></a>
+              <a href='https://github.com/penced0513' target='_blank'><img src={daniel}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = daniel}/></a>
+              <a href='https://github.com/WellerJay118' target='_blank'><img src={jacob}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = jacob}/></a>
+              
+             
         </div>
       </div>
     </div>
