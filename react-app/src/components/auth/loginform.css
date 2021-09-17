@@ -91,3 +91,29 @@ html, body, #root {
     height: 40px;
     align-self: center;
 }
+.about-me-section{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex:1;
+   
+    margin-top: 5%;
+}
+
+.about-me-section img{
+    object-fit: cover;
+    height: 87px;
+    width: 103px;
+    border-radius: 50%;
+}
+
+.about-me-section img:hover{
+
+}
+
+.about-me-section a{
+    
+    text-decoration: none;
+    text-justify: end;
+    justify-content: end;
+}

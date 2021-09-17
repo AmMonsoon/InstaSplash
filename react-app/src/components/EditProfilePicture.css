@@ -1,4 +1,4 @@
-.add-image-section {
+.edit-pic-section{
     left: 55%;
     top: 56%;
     margin-left: -25%;
@@ -11,34 +11,9 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.add-image-form button{
-    background-color: #209CEE;
-    color: white;
-    border: 5px black;
-    border-radius: 12px;
-    width: 95px;
-    height: 40px;
-    align-self: center;
-    box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
-    
-    margin-top: 10px;
-}
-
-.new-image-form-input{
-    border-radius: 5px;
-    margin: 10px;
-}
-
-.add-img-preview{
-    max-width: 40%;
-    max-height: 100%;
-    margin-left: 29%;
-}
-
-
-.add-image-form {
+.edit-pic-form{
     left: 59%;
-    top: 46%;
+    top: 42%;
     margin-left: -47%;
     position: absolute;
     margin-top: -25%;
@@ -52,11 +27,32 @@
     height: 70%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
+.edit-pic-form button{
+    background-color: #209CEE;
+    color: white;
+    border: 5px black;
+    border-radius: 12px;
+    width: 95px;
+    height: 40px;
+    align-self: center;
+    box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+    
+    margin-top: 10px;
+}
+.edit-pic-form-input{
+    border-radius: 5px;
+    margin: 10px;
+}
 
-#add-image-header{
+#edit-pic-header{
     font-family: 'Work Sans', sans-serif;
     border: 4px black;
     color: #209CEE;
-    margin-left: 42%;
+    margin-left: 37%;
     margin-top: 9%;
+}
+.edit-profile-preview{
+    max-width: 40%;
+    max-height: 100%;
+    margin-left: 29%;
 }
