@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { setProfilePic } from "../store/user";
-
+import './EditProfilePicture.css'
 
 const EditProfilePicture = ({currentUrl, hideEdit}) => {
     const dispatch = useDispatch();
@@ -45,21 +45,22 @@ const EditProfilePicture = ({currentUrl, hideEdit}) => {
     }
 
     return(
-        <section>
-            <h1>Edit Profile Pic Form</h1>
+        <section className='edit-pic-section'>
+            <h1 id='edit-pic-header'>Edit Profile Pic</h1>
             <div>
             {validationErrors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
-            <form onSubmit={(e) => handleSubmit(userId, e)}>
-                <input
+            <form className='edit-pic-form' onSubmit={(e) => handleSubmit(userId, e)}>
+                <input className='edit-pic-form-input'
                 placeholder="Image URL"
                 type="text"
                 required
                 value={imageUrl}
                 onChange={((e) => setImageUrl(e.target.value))}
                 />
+                {imageUrl && <div><div>Preview Post:</div><img className="edit-profile-preview" src={imageUrl} alt=""></img></div>}
                 <button type="submit">Submit</button>
                 <button type="click" onClick={hideEdit}>Cancel</button>
 
