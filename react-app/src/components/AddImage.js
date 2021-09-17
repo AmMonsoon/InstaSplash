@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { addNewImage } from "../store/image"
 import { useHistory } from "react-router-dom"
-
+import './AddImage.css'
 
 const CreateImage = () => {
     const dispatch = useDispatch();
