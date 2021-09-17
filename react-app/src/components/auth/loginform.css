@@ -4,6 +4,27 @@ html, body, #root {
     padding: 0;
 }
 
+.logo__wapper {
+    max-width: 300px;
+    max-height: 200px;
+}
+
+.login__text {
+    font-family: 'Work Sans', sans-serif;
+    font-size: larger;
+    font-weight: 400;
+    align-self: center;
+}
+
+.login__signup {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.logo__image {
+    max-height: 200px;
+    max-width: 300px;
+}
+
 .login-page-container {
     display: flex;
     justify-content: flex-end;
@@ -51,12 +72,22 @@ html, body, #root {
     margin-top: 1em;
 }
 
-.login-demo-btn {
-    align-self: center;
-    width: 50%;
+.login__submit--button {
+    background-color: #209CEE;
+    color: white;
+    border: 5px white;
+    border-radius: 12px;
+    width: 95px;
+    height: 40px;
+
 }
 
-.login-section-container > h2 {
-    padding: 0;
-    margin: 0;
+.login-demo-btn {
+    background-color: #209CEE;
+    color: white;
+    border: 5px white;
+    border-radius: 12px;
+    width: 95px;
+    height: 40px;
+    align-self: center;
 }
