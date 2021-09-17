@@ -53,13 +53,13 @@ const handleFollow = async(e) => {
     content = <EditProfilePicture hideEdit={hideEdit} currentUrl={ user.profilePic }/>
   } else {
     content =
+    <div className="userPage__container">
       <div className="userPage__wrapper">
+        <div className="userPage__leftCol" style={{backgroundImage: 'url(' + user?.profilePic + ')'}}>
 
-        <div className="userPage__leftCol">
-
-          <div className="userPage__profilePic">
-            <img src={user?.profilePic} alt=""></img>
-          </div>
+          {/* <div className="userPage__profilePic"> */}
+            {/* <img src={user?.profilePic} alt=""></img> */}
+          {/* </div> */}
         </div>
 
         <div className="userPage__rightCol">
@@ -69,26 +69,38 @@ const handleFollow = async(e) => {
             { currentUser.id !== Number(userId) && !follow && <button onClick={e => handleFollow(e)}>Follow</button>}
           </div>
 
-          <div className="userPage__profilePic--editButton">
-            {currentUser.id === Number(userId) && <button onClick={e => displayEdit(e)}> Edit Profile Pic</button>}
-          </div>
-
           <div className="userPage__info--wrapper">
+            {/* <div className="userPage__info">
+              <a>User Id:</a> {userId}
+            </div> */}
+
             <div className="userPage__info">
-              <strong>User Id</strong> {userId}
+              <a>Welcome back, {user?.username}!</a>
+            </div>
+
+            <div className="userPage__info">
+              <a>Email -</a> {user?.email}
+            </div>
+
+            {/* <div className="userPage__info--otherInfo">
+              <p>Other info such as # of followers</p>
+              <p>Other info such as # of images</p>
+              <p>Other info such as total # of likes?</p>
+            </div> */}
+            <div className="userPage__info">
+              <div className="userPage__profilePic--editButton">
+                {currentUser.id === Number(userId) && <button onClick={e => displayEdit(e)}> Change profile picture</button>}
               </div>
+            </div>
+
           </div>
 
-          <div className="userPage__info">
-            <strong>Username</strong> {user?.username}
-          </div>
 
-          <div className="userPage__info">
-            <strong>Email</strong> {user?.email}
-          </div>
 
         </div>
       </div>
+    </div>
+
   }
 
   return (
