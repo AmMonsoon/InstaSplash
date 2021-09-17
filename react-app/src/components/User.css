@@ -65,3 +65,13 @@
     border-radius: 2px;
     font-weight: normal;
 }
+
+.userPage__profilePic--editButton button{
+    background-color: #209CEE;
+    color: white;
+    border: 5px white;
+    border-radius: 12px;
+    width: 150px;
+    height: 40px;
+}
+
