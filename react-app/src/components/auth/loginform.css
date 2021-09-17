@@ -93,16 +93,15 @@ html, body, #root {
 }
 .about-me-section{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     flex:1;
-    align-self: flex-end;
+   
     margin-top: 5%;
 }
 
 .about-me-section img{
-    max-height: 100%;
-    max-width: 100%;
+    object-fit: cover;
     height: 87px;
     width: 103px;
     border-radius: 50%;

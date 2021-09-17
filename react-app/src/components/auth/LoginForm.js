@@ -8,6 +8,7 @@ import Pat from "../../images/Pat.JPG"
 import Lily from "../../images/Lily.JPG"
 import daniel from "../../images/daniel.jpg"
 import jacob from "../../images/jacob.jpg"
+import github from "../../images/github.png"
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -15,12 +16,9 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const [isShown, setIsShowm] = useState(false)
 
-  const changeBackground = e =>{
-    e.target.style.background = 'pink'
-  
-  }
+
+ 
 
 
 
@@ -91,14 +89,13 @@ const LoginForm = () => {
         </div>
         <div className='about-me-section'>
               
-              <a onMouseOver={changeBackground} href='https://github.com/cpowers1203' target='_blank' ><i className="fab fa-github"></i></a>
-              <a href='https://github.com/AmMonsoon' target='_blank'> 
-              isShown && <img src={Lily} onMouseEnter={changeBackground} onMouseLeave={Lily} alt=''/>
-              <i className="fab fa-github"></i>
-              </a>
             
-              <a href='https://github.com/penced0513' target='_blank'> <img src={daniel} alt=''/><i className="fab fa-github"></i></a>
-              <a href='https://github.com/WellerJay118' target='_blank'> <img src={jacob} alt=''/><i className="fab fa-github"></i></a>
+              <a href='https://github.com/cpowers1203' target='_blank'><img src={Pat}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Pat}/></a>
+              <a href='https://github.com/AmMonsoon' target='_blank'><img src={Lily}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Lily}/></a>
+              <a href='https://github.com/penced0513' target='_blank'><img src={daniel}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = daniel}/></a>
+              <a href='https://github.com/WellerJay118' target='_blank'><img src={jacob}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = jacob}/></a>
+              
+             
         </div>
       </div>
     </div>
