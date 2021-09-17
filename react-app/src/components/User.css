@@ -56,10 +56,12 @@
     display: flex;
     align-items: center;
     justify-content: left;
+
 }
 
-.userPage__info p {
+.userPage__info strong {
     font-size: 22px;
     padding: 4px;
     border-radius: 2px;
+    font-weight: normal;
 }
