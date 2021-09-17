@@ -1,16 +1,60 @@
 
 .image-page-container{
     display: flex;
+    padding: 0;
     padding-left: 1em;
-
+    justify-content: center;
+    align-content: center;
+    margin: 0;
 }
+
+.fa-edit:hover,
+.fa-sync-alt:hover,
+.fa-times-circle:hover {
+    cursor: pointer;
+}
+
+.fa-trash-alt:hover {
+    cursor: pointer;
+}
+
+.edit-caption-btn {
+    display: flex;
+}
+.fa-sync-alt {
+    margin-right: 0.25em;
+}
+
 .image-info-container{
     padding-left: 1em;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 50%;
+    /* width: 100%; */
+    /* overflow: hidden; */
 }
+
+.image-pic-and-info-container {
+    display: flex;
+    padding-top: 2em;
+    max-height: 600px;
+    max-width: 90%;
+    /* width: 100%; */
+}
+
 .image-page-pic{
     max-height: 600px;
-    max-width: 600px;
     border-radius: 4px;
+}
+
+
+.image-comments-section {
+    flex: 1;
+    overflow-y: scroll;
+    /* width: 100%; */
+    overflow-x: hidden;
 }
 
 .user-profilepic-small {
@@ -23,4 +67,81 @@
 .image-user-container {
     display: flex;
     align-items: center;
+}
+
+.image-page-caption { 
+    display: flex;
+    align-items: center;
+
+}
+
+.image-page-caption > h2 { 
+    padding-right: 0.5em;
+}
+
+.image-page-caption > p {
+    color: grey;
+}
+
+
+.image-likes-comments {
+    justify-self: flex-end;
+    padding-top: 0.5em;
+}
+
+.fa-heart {
+    text-decoration: none;
+    color: red;
+
+}
+.delete-image {
+    margin-left: 1em;
+}
+
+.delete-image-btn {
+    text-decoration: none;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    color: red
+}
+
+.delete-image-btn:hover {
+    cursor: pointer;
+}
+
+
+.image-comments-section::-webkit-scrollbar {
+    width: 0;  
+    background: transparent; 
+}
+
+.image-likes-btn {
+    margin-right: 0.25em;
+}
+.image-likes-and-btn { 
+    display: flex;
+    padding-bottom: 0.25em;
+}
+
+.image-poster-username {
+    padding: 0;
+    margin: 0.25em 0;
+    text-decoration: none;
+    color: black;
+    font-size: 2em; 
+    font-weight: bold;
+}
+
+.image-page-caption-username {
+    display: block; 
+    font-size: 1.5em; 
+    margin-top: 0.83em; 
+    margin-bottom: 0.83em;
+    margin-left: 0; 
+    margin-right: 0; 
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    padding: 0 0.25em;
 }

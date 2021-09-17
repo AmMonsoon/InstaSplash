@@ -1,0 +1,23 @@
+.add-comment-field { 
+    width: 80%;
+}
+
+.add-comment-submit {
+    text-decoration: none;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+
+}
+
+.add-comment-submit:hover {
+    cursor: pointer;
+}
+
+.add-comment-submit:enabled {
+    text-decoration: none;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    color: rgb(32,156,238)
+}

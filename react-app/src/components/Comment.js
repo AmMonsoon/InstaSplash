@@ -10,26 +10,23 @@ function Comment() {
     const {imageId} = useParams()
     const dispatch = useDispatch()
 
-
-
-    // const image = useSelector(state => state.images.all[imageId])
-    // const user = useSelector(state => state.session.user)
-    const comments = useSelector(state => Object.values(state.images.all[imageId]?.comments))
-
-
     useEffect(() => {
         (async () => {
             await dispatch(getAllComments(imageId))
         })()
     }, [imageId, dispatch])
 
-
+    // const image = useSelector(state => state.images.all[imageId])
+    // const user = useSelector(state => state.session.user)
+    const comments = useSelector(state => Object.values(state.images.all[imageId]?.comments))
+    let commentsArr
+    if (comments) commentsArr = Object.values(comments)
+    const image = useSelector(state => state.images.all[imageId])
 
     return (
-        <div>
-            <h4>this is the comments section</h4>
+        <div>                
             {comments?.map((comment) => (
-                <div key={comment.id}>
+                <div className="single-comment-wrapper" key={comment.id}>
                     <SingleComment comment={comment} />
                 </div>
             ))}

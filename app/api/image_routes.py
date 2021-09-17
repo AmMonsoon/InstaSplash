@@ -26,7 +26,9 @@ def following():
             comments = Comment.query.filter(Comment.imageId == image.id).all()
             commentPayload = {}
             for comment in comments:
-                commentPayload[comment.imageId] = comment.comment_to_dict()
+                commentUser = User.query.filter(User.id == comment.userId).first()
+                comment.user = commentUser.to_dict()
+                commentPayload[comment.id] = comment.comment_to_dict_inc_user()
 
             image.comments = commentPayload
             payload.append(image.to_dict_inc_user_likes_comments())
@@ -55,7 +57,7 @@ def explore():
             comments = Comment.query.filter(Comment.imageId == image.id).all()
             commentPayload = {}
             for comment in comments:
-                commentPayload[comment.imageId] = comment.comment_to_dict()
+                commentPayload[comment.id] = comment.comment_to_dict()
 
             image.comments = commentPayload
             payload.append(image.to_dict_inc_user_likes_comments())
@@ -75,7 +77,9 @@ def image(id):
     comments = Comment.query.filter(Comment.imageId == id).all()
     commentPayload = {}
     for comment in comments:
-        commentPayload[comment.id] = comment.comment_to_dict()
+        commentUser = User.query.filter(User.id == comment.userId).first()
+        comment.user = commentUser.to_dict()
+        commentPayload[comment.id] = comment.comment_to_dict_inc_user()
     image.comments = commentPayload
 
 
@@ -88,7 +92,22 @@ def update_caption(id):
     image.caption = newcaption
     db.session.add(image)
     db.session.commit()
-    return image.to_dict_inc_user()
+
+    likes = Like.query.filter(Like.imageId == image.id).all()
+    payload2 = {}
+    for like in likes:
+        payload2[like.userId] = like.to_dict()
+    image.likes = payload2
+    
+    comments = Comment.query.filter(Comment.imageId == id).all()
+    commentPayload = {}
+    for comment in comments:
+        commentUser = User.query.filter(User.id == comment.userId).first()
+        comment.user = commentUser.to_dict()
+        commentPayload[comment.id] = comment.comment_to_dict_inc_user()
+    image.comments = commentPayload
+
+    return image.to_dict_inc_user_likes_comments()
 
 @image_routes.route('/add', methods=["POST"])
 def addImage():
@@ -135,10 +154,12 @@ def remove_like(id):
 @image_routes.route('/<int:id>/comments')
 def get_comments(id):
     comments = Comment.query.filter(Comment.imageId == id).all()
-    payload = {}
+    commentPayload = {}
     for comment in comments:
-        payload[comment.id] = comment.comment_to_dict()
-    return payload
+        commentUser = User.query.filter(User.id == comment.userId).first()
+        comment.user = commentUser.to_dict()
+        commentPayload[comment.id] = comment.comment_to_dict_inc_user()
+    return commentPayload
 
 @image_routes.route('/<int:id>/comments/add', methods=['POST'])
 def add_comment(id):
@@ -152,7 +173,9 @@ def add_comment(id):
     if comment:
         db.session.add(comment)
         db.session.commit()
-    payload = comment.comment_to_dict()
+    commentUser = User.query.filter(User.id == comment.userId).first()
+    comment.user = commentUser.to_dict()
+    payload = comment.comment_to_dict_inc_user()
     return payload
 
 
@@ -163,7 +186,9 @@ def edit_comment(id, commentId):
     commentToEdit.commentBody = edittedComment
     db.session.add(commentToEdit)
     db.session.commit()
-    return commentToEdit.comment_to_dict()
+    commentUser = User.query.filter(User.id == commentToEdit.userId).first()
+    commentToEdit.user = commentUser.to_dict()
+    return commentToEdit.comment_to_dict_inc_user()
 
 
     # Get imageid from params, query comment table using that image id and display all of the comments for that image id, with order of most recent on top(sorted by created_at)
