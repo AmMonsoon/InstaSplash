@@ -36,8 +36,13 @@
     flex-direction: column;
 }
 
-.userPage__follow {
-
+.userPage__follow button{
+    background-color: #209CEE;
+    color: white;
+    border: 5px white;
+    border-radius: 12px;
+    width: 95px;
+    height: 40px;
 }
 
 .userPage__profilePic--editButton {
