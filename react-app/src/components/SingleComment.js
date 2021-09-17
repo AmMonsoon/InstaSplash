@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EditCommentForm from './EditCommentForm';
 import { deleteComment } from '../store/image';
 import "./SingleComment.css"
+import { NavLink } from 'react-router-dom';
 
 function SingleComment({ comment }) {
     const dispatch = useDispatch();
@@ -32,12 +33,16 @@ function SingleComment({ comment }) {
     else{
         commentContent = (
             <>
-                <div>{comment.commentBody}</div>
+                <div className="comment-body-container">
+                    <img className="user-profilepic-small" src={comment?.user?.profilePic}/>
+                    <NavLink className="single-comment-username" to={`/users/${comment?.userId}`}>{comment?.user?.username}</NavLink>
+                    <div className="comment-body-p">{comment.commentBody}</div>
+                </div>
             {
                 comment?.userId === user.id &&
-                <div>
-                <button onClick={displayEdit}>Edit</button>
-                <button onClick={(e) => handleDelete(e)}>Delete</button>
+                <div className="edit-comment-btns">
+                    <div className="edit-comment-btn" onClick={displayEdit}><i class="fas fa-edit"></i></div>
+                    <div onClick={(e) => handleDelete(e)}><i class="far fa-trash-alt"></i></div>
                 </div>
             }
         </>
@@ -46,9 +51,9 @@ function SingleComment({ comment }) {
 
 
     return (
-        <div className="singleComment__wrapper">
+        <>
             {commentContent}
-        </div>
+        </>
     )
 }
 

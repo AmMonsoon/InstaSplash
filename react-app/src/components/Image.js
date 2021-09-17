@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams ,useHistory} from 'react-router-dom';
+import { useParams ,useHistory, NavLink} from 'react-router-dom';
 import { fetchImage } from '../store/image';
 import { useDispatch, useSelector} from 'react-redux';
 import EditCaptionForm from "./EditCaptionForm"
@@ -14,6 +14,7 @@ function Image(){
     const dispatch = useDispatch()
 
     const image = useSelector(state => state.images.all[imageId])
+    const imageCaption = useSelector(state => state.images.all[imageId]?.caption)
     const user = useSelector(state => state.session.user)
     const like = useSelector(state => state.images.all[imageId]?.likes?.[user.id])
     const [showEdit, setShowEdit] = useState(false)
@@ -50,14 +51,13 @@ function Image(){
     }
     else{
         captionContent = (
-        <>
-            <img src={image?.poster?.profilePic}  className="user-profilepic-small" alt="smallProfilePic"></img>
-            <h1>{image?.poster?.username}</h1>
-            <h2>{image?.caption}</h2>
-            {
-             user.id === image?.userId &&  <button onClick={displayEdit}>Edit</button>
-
-            }
+        <>  
+            <div className="image-page-caption">
+                <img src={image?.poster?.profilePic}  className="user-profilepic-small"></img>
+                <NavLink to={`/users/${image?.poster?.id}`} className="image-page-caption-username">{image?.poster?.username}</NavLink>
+                <p>{imageCaption}</p>
+            </div>
+             {user.id === image?.userId && <div onClick={displayEdit}><i class="fas fa-edit"></i></div>}
         </>
         )
     }
@@ -70,51 +70,63 @@ function Image(){
 
     const handleUnlike = async(e) => {
         e.preventDefault()
+        document.getElementById("heart").setAttribute("class", "far fa-heart fa-lg")
         await dispatch(destroyLike(imageId, user.id))
     }
 
     const handleLike = async(e) => {
         e.preventDefault()
+        document.getElementById("heart").setAttribute("class", "fas fa-heart fa-lg")
         await dispatch(postLike(imageId, user.id))
+    }
+
+    const handleBothLikes = async(e) => {
+        e.preventDefault()
+        if (like) {
+            handleUnlike(e)
+        } else {
+            handleLike(e)
+        }
     }
 
     return(
 
         <div className='image-page-container'>
 
-            <img className='image-page-pic' src={image.imageUrl} alt='' />
-            <div className='image-info-container'>
-                <div className="image-user-container">
-                    <img src={image?.poster?.profilePic}  className="user-profilepic-small" alt="smallProfilePic"></img>
-                    <h1>{image?.poster?.username}</h1>
-                </div>
-                <div className='image-caption-container'>
-                <div>
-                {
-                    user.id === image?.userId &&  <button onClick={e => deleteImage(e)}>Delete Image</button>
+            <div className="image-pic-and-info-container">
+                <img className='image-page-pic' src={image.imageUrl} alt='' />
+                <div className='image-info-container'>
+                    <div className="image-user-container">
+                        <img src={image?.poster?.profilePic}  className="user-profilepic-small"></img>
+                        <NavLink to={`/users/${image?.poster.id}`} className="image-poster-username">{image?.poster?.username}</NavLink>
+                        <div className="delete-image">
+                        {
+                            user.id === image?.userId &&  <button className="delete-image-btn" onClick={e => deleteImage(e)}>Delete Image</button>
 
-                }
-                </div>
-                    {captionContent}
-                </div>
-                <div>
-                    <div>
+                        }
+                        </div>
+                    </div>
+                    <div className='image-caption-container'>
+                        <div>
+                            {captionContent}
+                        </div>
+                    </div>
+                    <div className="image-comments-section">
                         <Comment />
-                        <div>
-                            { like && <button onClick={e => handleUnlike(e)}>Unlike</button> }
-                            { !like && <button onClick={e => handleLike(e)}>Like</button>}
-                            <div>
-                                 Likes: {image.likes && Object.keys(image?.likes).length}
+                    </div>
+                    <div className="image-likes-comments">
+                        <div className="image-likes-and-btn">
+                            <div id="heart-div" className="image-likes-btn" onClick={e => handleBothLikes(e)}>
+                                <i id="heart" class="far fa-heart fa-lg"></i>
                             </div>
-                            <AddComment />
+                            <div>
+                                {image.likes && Object.keys(image?.likes).length} likes
+                            </div>
                         </div>
-                        <div>
-
-                        </div>
+                        <AddComment />
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { addNewImage } from "../store/image"
 import { useHistory } from "react-router-dom"
-
+import './AddImage.css'
 
 const CreateImage = () => {
     const dispatch = useDispatch();
@@ -57,37 +57,32 @@ const handleSubmit = async(e) => {
     }
 
     return(
-        <section>
-            <h1>create image form</h1>
+        <section className='add-image-section'>
+            <h1 id='add-image-header'>Post a Pic</h1>
              <div>
             {validationErrors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
             </div>
-            <form onSubmit={handleSubmit}>
-                <input
+            <form 
+            className='add-image-form'
+            onSubmit={handleSubmit}>
+                <input className='new-image-form-input'
                 placeholder="Caption"
                 type="text"
                 required
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
                 />
-                <input
+                <input className='new-image-form-input'
                 placeholder="Image URL"
                 type="text"
                 required
                 value={imageUrl}
                 onChange={((e) => setImageUrl(e.target.value))}
-                // onChange={
-                //     checkImage(e.target.value)
-                // }
                 />
-                {/* <input
-                type="dropdown"
-                required
-                value={imageUrl}
-                onChange={(e) => setCaption(e.target.value)}
-                /> */}
+            {imageUrl && <div><div>Preview Post:</div><img className="add-img-preview" src={imageUrl} alt=""></img></div>}
+           
                 <button type="submit" >Submit</button>
                 <button type="click" onClick={handleCancel}>Cancel</button>
 

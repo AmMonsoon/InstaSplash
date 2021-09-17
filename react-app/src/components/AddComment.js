@@ -18,10 +18,14 @@ function AddComment() {
         const comment = {
             commentBody
         }
-        setCommentBody('')
-        let createdComment = await dispatch(addNewComment(comment, imageId))
-        if(createdComment) {
-            history.push(`/images/${imageId}`)
+        if (commentBody.length < 256) {
+            setCommentBody('')
+            let createdComment = await dispatch(addNewComment(comment, imageId))
+            if(createdComment) {
+                history.push(`/images/${imageId}`)
+            }
+        } else {
+            alert("Please limit your comment to 255 Characters")
         }
     }
 
@@ -32,17 +36,16 @@ function AddComment() {
 
     return (
         <section>
-            <h1>comment form</h1>
             <form onSubmit={handleSubmit}>
                 <input
+                className="add-comment-field"
                 placeholder="Comment"
                 type="text"
                 required
                 value={commentBody}
                 onChange={(e) => setCommentBody(e.target.value)}
                 />
-                <button type="submit">Submit Comment</button>
-                <button type="click" onClick={handleCancel}>Cancel</button>
+                <button className="add-comment-submit" type="submit" disabled={!commentBody.length} >Post</button>
             </form>
         </section>
     )

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import "./loginform.css"
+import logo from "../../logo.png"
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -39,8 +40,10 @@ const LoginForm = () => {
   return (
     <div className="login-page-container">
       <div className="login-section-container">
-        <h1>Instasplash</h1>
-        <h2>Log In</h2>
+        <div className="logo__wapper">
+          <img className="logo__image" src={logo} alt=""></img>
+        </div>
+        <div className="login__text">Log In</div>
         <form onSubmit={onLogin}>
           <div>
             {errors.map((error, ind) => (
@@ -67,10 +70,10 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
           </div>
-          <button type='submit'>Login</button>
+          <button  className="login__submit--button" type='submit'>Login</button>
         </form>
-        <button className="login-demo-btn" onClick={loginDemo}>Try Our Demo</button>
-        <div>
+        <button className="login-demo-btn" onClick={loginDemo}>Demo</button>
+        <div className="login__signup">
           Don't have an account? <NavLink className="login-page-signup-link" to="/sign-up">Sign Up</NavLink>
         </div>
       </div>

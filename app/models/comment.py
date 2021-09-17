@@ -22,3 +22,14 @@ class Comment(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
+
+    def comment_to_dict_inc_user(self):
+        return {
+            'id': self.id,
+            'userId': self.userId,
+            'imageId': self.imageId,
+            'commentBody': self.commentBody,
+            'created_at': self.created_at,
+            'user': self.user,
+            'updated_at': self.updated_at
+        }

@@ -18,9 +18,9 @@ function EditCaptionForm({ oldCaption, hideEdit }) {
     return (
         <div>
             <textarea value={caption} onChange={(e) => setCaption(e.target.value)}/>
-            <div>
-                <button onClick={(e) => submitEdit(e)}>Update</button>
-                <button onClick={hideEdit}>Cancel</button>
+            <div className="edit-caption-btn">
+                <div className="edit-caption-btn" onClick={(e) => submitEdit(e)}><i class="fas fa-sync-alt"></i></div>
+                <div className="edit-caption-btn" onClick={hideEdit}><i class="far fa-times-circle"></i></div>
             </div>
 
         </div>
