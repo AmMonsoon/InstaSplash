@@ -51,7 +51,7 @@ function Image(){
     else{
         captionContent = (
         <>
-            <img src={image?.poster?.profilePic}  className="user-profilepic-small"></img>
+            <img src={image?.poster?.profilePic}  className="user-profilepic-small" alt="smallProfilePic"></img>
             <h1>{image?.poster?.username}</h1>
             <h2>{image?.caption}</h2>
             {
@@ -81,11 +81,11 @@ function Image(){
     return(
 
         <div className='image-page-container'>
-            
+
             <img className='image-page-pic' src={image.imageUrl} alt='' />
             <div className='image-info-container'>
                 <div className="image-user-container">
-                    <img src={image?.poster?.profilePic}  className="user-profilepic-small"></img>
+                    <img src={image?.poster?.profilePic}  className="user-profilepic-small" alt="smallProfilePic"></img>
                     <h1>{image?.poster?.username}</h1>
                 </div>
                 <div className='image-caption-container'>
@@ -109,7 +109,7 @@ function Image(){
                             <AddComment />
                         </div>
                         <div>
-                    
+
                         </div>
                     </div>
                 </div>

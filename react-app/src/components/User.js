@@ -75,11 +75,11 @@ const handleFollow = async(e) => {
             </div> */}
 
             <div className="userPage__info">
-              {currentUser.id === Number(userId) ? <a>Welcome back, {user?.username}!</a>: <a>{user?.username}'s profile</a>}
+              {currentUser.id === Number(userId) ? <p>Welcome back, {user?.username}!</p>: <p>{user?.username}'s profile</p>}
             </div>
 
             <div className="userPage__info">
-              <a>Email -</a> {user?.email}
+              <p>Email -</p> {user?.email}
             </div>
 
             {/* <div className="userPage__info--otherInfo">

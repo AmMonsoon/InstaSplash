@@ -52,14 +52,14 @@
 }
 
 .userPage__info {
-    margin: 10px 0;
+    /* margin: 10px 0; */
     display: flex;
     align-items: center;
     justify-content: left;
 }
 
-.userPage__info a {
+.userPage__info p {
     font-size: 22px;
-    padding: 3px;
+    padding: 4px;
     border-radius: 2px;
 }
