@@ -1,0 +1,13 @@
+.logo__image {
+    max-height: 200px;
+    max-width: 300px;
+}
+
+.sign-up__submit--button {
+    background-color: #209CEE;
+    color: white;
+    border: 5px white;
+    border-radius: 12px;
+    width: 95px;
+    height: 40px;
+}

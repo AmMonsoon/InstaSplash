@@ -61,9 +61,24 @@ html, body, #root {
     margin-top: 1em;
 }
 
+.login__submit--button {
+    background-color: #209CEE;
+    color: white;
+    border: 5px white;
+    border-radius: 12px;
+    width: 95px;
+    height: 40px;
+
+}
+
 .login-demo-btn {
+    background-color: #209CEE;
+    color: white;
+    border: 5px white;
+    border-radius: 12px;
+    width: 95px;
+    height: 40px;
     align-self: center;
-    width: 50%;
 }
 
 .login-section-container > h2 {

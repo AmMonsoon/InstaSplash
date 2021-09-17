@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import "./signupform.css"
+import logo from "../../logo.png"
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -55,7 +56,9 @@ const SignUpForm = () => {
   return (
     <div className="login-page-container">
       <div className="login-section-container">
-      <h1>Instasplash</h1>
+      <div className="logo__wrapper">
+        <img className="logo__image" src={logo} alt=""></img>    
+      </div>
       <h2>Sign Up</h2>
         <form onSubmit={onSignUp}>
           <div>
@@ -122,7 +125,7 @@ const SignUpForm = () => {
               required={true}
             ></input>
           </div>
-          <button type='submit'>Sign Up</button>
+          <button className="sign-up__submit--button" type='submit'>Sign Up</button>
         </form>
         <div>
           Already have an account? <NavLink className="login-page-signup-link" to="/login">Log In</NavLink>
