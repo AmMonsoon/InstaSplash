@@ -11,3 +11,14 @@
     width: 95px;
     height: 40px;
 }
+
+.signup__text {
+    font-family: 'Work Sans', sans-serif;
+    font-size: larger;
+    font-weight: 400;
+    align-self: center;
+}
+
+.signup__login {
+    font-family: 'Work Sans', sans-serif;
+}

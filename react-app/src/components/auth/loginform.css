@@ -9,6 +9,17 @@ html, body, #root {
     max-height: 200px;
 }
 
+.login__text {
+    font-family: 'Work Sans', sans-serif;
+    font-size: larger;
+    font-weight: 400;
+    align-self: center;
+}
+
+.login__signup {
+    font-family: 'Work Sans', sans-serif;
+}
+
 .logo__image {
     max-height: 200px;
     max-width: 300px;
@@ -79,9 +90,4 @@ html, body, #root {
     width: 95px;
     height: 40px;
     align-self: center;
-}
-
-.login-section-container > h2 {
-    padding: 0;
-    margin: 0;
 }

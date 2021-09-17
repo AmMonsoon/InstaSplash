@@ -59,7 +59,7 @@ const SignUpForm = () => {
       <div className="logo__wrapper">
         <img className="logo__image" src={logo} alt=""></img>    
       </div>
-      <h2>Sign Up</h2>
+      <div className="signup__text">Sign Up</div>
         <form onSubmit={onSignUp}>
           <div>
             {errors.map((error, ind) => (
@@ -127,7 +127,7 @@ const SignUpForm = () => {
           </div>
           <button className="sign-up__submit--button" type='submit'>Sign Up</button>
         </form>
-        <div>
+        <div className="signup__login">
           Already have an account? <NavLink className="login-page-signup-link" to="/login">Log In</NavLink>
         </div>
       </div>

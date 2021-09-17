@@ -43,7 +43,7 @@ const LoginForm = () => {
         <div className="logo__wapper">
           <img className="logo__image" src={logo} alt=""></img>
         </div>
-        <h2>Log In</h2>
+        <div className="login__text">Log In</div>
         <form onSubmit={onLogin}>
           <div>
             {errors.map((error, ind) => (
@@ -73,7 +73,7 @@ const LoginForm = () => {
           <button  className="login__submit--button" type='submit'>Login</button>
         </form>
         <button className="login-demo-btn" onClick={loginDemo}>Demo</button>
-        <div>
+        <div className="login__signup">
           Don't have an account? <NavLink className="login-page-signup-link" to="/sign-up">Sign Up</NavLink>
         </div>
       </div>
