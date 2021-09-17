@@ -1,0 +1,67 @@
+.userPage__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userPage__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    margin-top: 30px;
+    background-color: white;
+    border-radius: 25px;
+    width: 30%;
+}
+
+.userPage__leftCol{
+    border: 3px solid black;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    /* margin-right: 10px; only needed if turn wrapper to row */
+
+}
+
+
+.userPage__rightCol {
+    margin-top: 30px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.userPage__follow {
+
+}
+
+.userPage__profilePic--editButton {
+    margin-left: 25px;
+
+}
+
+.userPage__info--wrapper {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.userPage__info {
+    /* margin: 10px 0; */
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+}
+
+.userPage__info strong {
+    font-size: 22px;
+    padding: 4px;
+    border-radius: 2px;
+    font-weight: normal;
+}

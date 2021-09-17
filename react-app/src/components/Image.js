@@ -58,7 +58,6 @@ function Image(){
                 <p>{imageCaption}</p>
             </div>
              {user.id === image?.userId && <div onClick={displayEdit}><i class="fas fa-edit"></i></div>}
-            
         </>
         )
     }
@@ -93,6 +92,7 @@ function Image(){
     return(
 
         <div className='image-page-container'>
+
             <div className="image-pic-and-info-container">
                 <img className='image-page-pic' src={image.imageUrl} alt='' />
                 <div className='image-info-container'>

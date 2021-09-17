@@ -4,6 +4,8 @@ import { useDispatch, useSelector} from 'react-redux';
 import { authenticate } from '../store/session';
 import { postFollow, destroyFollow, fetchUser } from '../store/user'
 import EditProfilePicture from './EditProfilePicture';
+import "./User.css"
+
 function User() {
   const dispatch = useDispatch()
   const [showEditProfilePic, setShowEditProfilePic] = useState(false)
@@ -25,7 +27,7 @@ function User() {
   if (!user) {
     return null;
   }
-  
+
 
   const handleUnfollow = async(e) => {
     e.preventDefault()
@@ -50,30 +52,55 @@ const handleFollow = async(e) => {
   if (showEditProfilePic) {
     content = <EditProfilePicture hideEdit={hideEdit} currentUrl={ user.profilePic }/>
   } else {
-    content =    <>
-      <div>
-        { currentUser.id !== Number(userId) && follow && <button onClick={e => handleUnfollow(e)}>Unfollow</button> }
-        { currentUser.id !== Number(userId) && !follow && <button onClick={e => handleFollow(e)}>Follow</button>}
-      </div>
-      <ul>
-        <li>
-          <strong>Profile Pic</strong>
-          <div>
-            {currentUser.id === Number(userId) && <button onClick={e => displayEdit(e)}> Edit Profile Pic</button>}
+    content =
+    <div className="userPage__container">
+      <div className="userPage__wrapper">
+        <div className="userPage__leftCol" style={{backgroundImage: 'url(' + user?.profilePic + ')'}}>
+
+          {/* <div className="userPage__profilePic"> */}
+            {/* <img src={user?.profilePic} alt=""></img> */}
+          {/* </div> */}
+        </div>
+
+        <div className="userPage__rightCol">
+
+          <div className="userPage__follow">
+            { currentUser.id !== Number(userId) && follow && <button onClick={e => handleUnfollow(e)}>Unfollow</button> }
+            { currentUser.id !== Number(userId) && !follow && <button onClick={e => handleFollow(e)}>Follow</button>}
           </div>
-          <img src={user?.profilePic} alt=""></img>
-        </li>
-        <li>
-          <strong>User Id</strong> {userId}
-        </li>
-        <li>
-          <strong>Username</strong> {user?.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user?.email}
-        </li>
-      </ul>
-    </>
+
+          <div className="userPage__info--wrapper">
+            {/* <div className="userPage__info">
+              <a>User Id:</a> {userId}
+            </div> */}
+
+            <div className="userPage__info">
+              {currentUser.id === Number(userId) ? <strong>Welcome back, {user?.username}!</strong>: <strong>{user?.username}'s profile</strong>}
+            </div>
+
+            <div className="userPage__info">
+              <strong>Email -</strong> {user?.email}
+            </div>
+
+            {/* <div className="userPage__info--otherInfo">
+              <p>Other info such as # of followers</p>
+              <p>Other info such as # of images</p>
+              <p>Other info such as total # of likes?</p>
+            </div> */}
+            <div className="userPage__info">
+              <div className="userPage__profilePic--editButton">
+                {currentUser.id === Number(userId) && <button onClick={e => displayEdit(e)}> Change profile picture</button>}
+              </div>
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
   }
 
   return (
