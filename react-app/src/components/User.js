@@ -75,7 +75,7 @@ const handleFollow = async(e) => {
             </div> */}
 
             <div className="userPage__info">
-              <a>Welcome back, {user?.username}!</a>
+              {currentUser.id === Number(userId) ? <a>Welcome back, {user?.username}!</a>: <a>{user?.username}'s profile</a>}
             </div>
 
             <div className="userPage__info">

@@ -1,7 +1,6 @@
 .userPage__container{
     display: flex;
     justify-content: center;
-    /* height: 70vh; */
     align-items: center;
 }
 
@@ -10,8 +9,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* width: 40vw;
-    height: 50vh; */
     padding: 50px;
     margin-top: 30px;
     background-color: white;
@@ -31,76 +28,38 @@
 
 }
 
-/* .userPage__leftCol img {
-    border: 1px solid black;
-    max-width: 100%;
-    max-height: 100%;
-    height: 40vh;
-    width: 40vw;
-
-} */
 
 .userPage__rightCol {
-    /* border: 1px dashed red; */
     margin-top: 30px;
     height: auto;
     display: flex;
     flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
 }
 
-/* .userPage__profilePic {
-    border: 1px solid black;
-    width: 40vw;
-    padding: none;
-    margin: none;
-} */
-
-/* .userPage__profilePic img {
-    border: 1px solid black;
-    max-width: 100%;
-    max-height: 100%;
-} */
-
-
 .userPage__follow {
-    /* border: 3px solid green; */
 
 }
 
 .userPage__profilePic--editButton {
-    /* border: 3px solid green; */
     margin-left: 25px;
 
 }
 
 .userPage__info--wrapper {
-    /* border: 2px dotted black; */
-    /* height: 300px; */
     display: flex;
     flex-direction: column;
-    /* justify-content:start; */
-    /* align-items: center; */
+
 }
 
 .userPage__info {
-    /* border: 2px solid red; */
     margin: 10px 0;
-    /* border-bottom: 1px solid rgba(0,0,0,0.2);
-    box-shadow: 0px 1px 2px rgba(0,0,0,0.05); */
     display: flex;
     align-items: center;
     justify-content: left;
 }
 
 .userPage__info a {
-    /* font-weight: bold; */
     font-size: 22px;
-    /* background-color: rgb(32,156,238); */
-    /* margin-right: 10px; */
     padding: 3px;
-    /* width: 125px; */
-    /* color: white; */
     border-radius: 2px;
 }
