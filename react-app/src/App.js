@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -48,8 +49,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <NavBar userId={currentUser?.id}/>
-          <h1>My Home Page</h1>
+          <Redirect to="/images/following"></Redirect>
         </ProtectedRoute>
         <ProtectedRoute path='/images/explore' exact={true}>
           <NavBar userId={currentUser?.id}/>
@@ -66,6 +66,10 @@ function App() {
         <ProtectedRoute path='/images/:imageId' exact={true} >
           <NavBar userId={currentUser?.id}/>
           <Image />
+        </ProtectedRoute>
+        <ProtectedRoute path='/'>
+          <NavBar  userId={currentUser?.id} />
+          <h1>404 Page Not Found</h1>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

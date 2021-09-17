@@ -12,3 +12,15 @@
     max-width: 600px;
     border-radius: 4px;
 }
+
+.user-profilepic-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 0.5em;
+}
+
+.image-user-container {
+    display: flex;
+    align-items: center;
+}

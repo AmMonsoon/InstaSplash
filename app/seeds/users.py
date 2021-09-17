@@ -6,11 +6,11 @@ faker = Faker()
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', profilePic='https://source.unsplash.com/random', email='demo@aa.io', password='password', firstName="Demo", lastName="User")
+        username='Demo', profilePic='https://images.unsplash.com/photo-1630286643448-ca2f23679a35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYzMTg4OTk4OA&ixlib=rb-1.2.1&q=80&w=1080', email='demo@aa.io', password='password', firstName="Demo", lastName="User")
     marnie = User(
-        username='marnie', profilePic='https://source.unsplash.com/random', email='marnie@aa.io', password='password', firstName="Marnarious", lastName="Marn")
+        username='marnie', profilePic='https://images.unsplash.com/photo-1584038180141-f3687c364e47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYzMTg5MDAyMA&ixlib=rb-1.2.1&q=80&w=1080', email='marnie@aa.io', password='password', firstName="Marnarious", lastName="Marn")
     bobbie = User(
-        username='bobbie', profilePic='https://source.unsplash.com/random', email='bobbie@aa.io', password='password', firstName="James", lastName="Chipson")
+        username='bobbie', profilePic='https://images.unsplash.com/photo-1630246020082-3b29702e839f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYzMTg5MDAzMA&ixlib=rb-1.2.1&q=80&w=1080', email='bobbie@aa.io', password='password', firstName="James", lastName="Chipson")
 
     db.session.add(demo)
     db.session.add(marnie)

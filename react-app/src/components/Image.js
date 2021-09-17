@@ -51,6 +51,8 @@ function Image(){
     else{
         captionContent = (
         <>
+            <img src={image?.poster?.profilePic}  className="user-profilepic-small"></img>
+            <h1>{image?.poster?.username}</h1>
             <h2>{image?.caption}</h2>
             {
              user.id === image?.userId &&  <button onClick={displayEdit}>Edit</button>
@@ -79,27 +81,36 @@ function Image(){
     return(
 
         <div className='image-page-container'>
-            <Comment />
-            <AddComment />
+            
             <img className='image-page-pic' src={image.imageUrl} alt='' />
             <div className='image-info-container'>
-                <h1>{image?.poster?.username}</h1>
+                <div className="image-user-container">
+                    <img src={image?.poster?.profilePic}  className="user-profilepic-small"></img>
+                    <h1>{image?.poster?.username}</h1>
+                </div>
                 <div className='image-caption-container'>
                 <div>
                 {
-             user.id === image?.userId &&  <button onClick={e => deleteImage(e)}>Delete Image</button>
+                    user.id === image?.userId &&  <button onClick={e => deleteImage(e)}>Delete Image</button>
 
-            }
+                }
                 </div>
                     {captionContent}
                 </div>
                 <div>
                     <div>
-                        Likes: {image.likes && Object.keys(image?.likes).length}
-                    </div>
-                    <div>
-                        { like && <button onClick={e => handleUnlike(e)}>Unlike</button> }
-                        { !like && <button onClick={e => handleLike(e)}>Like</button>}
+                        <Comment />
+                        <div>
+                            { like && <button onClick={e => handleUnlike(e)}>Unlike</button> }
+                            { !like && <button onClick={e => handleLike(e)}>Like</button>}
+                            <div>
+                                 Likes: {image.likes && Object.keys(image?.likes).length}
+                            </div>
+                            <AddComment />
+                        </div>
+                        <div>
+                    
+                        </div>
                     </div>
                 </div>
             </div>
