@@ -4,6 +4,16 @@ html, body, #root {
     padding: 0;
 }
 
+.logo__wapper {
+    max-width: 300px;
+    max-height: 200px;
+}
+
+.logo__image {
+    max-height: 200px;
+    max-width: 300px;
+}
+
 .login-page-container {
     display: flex;
     justify-content: flex-end;

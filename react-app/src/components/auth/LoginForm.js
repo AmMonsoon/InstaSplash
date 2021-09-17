@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import "./loginform.css"
+import logo from "../../logo.png"
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -39,7 +40,9 @@ const LoginForm = () => {
   return (
     <div className="login-page-container">
       <div className="login-section-container">
-        <h1>Instasplash</h1>
+        <div className="logo__wapper">
+          <img className="logo__image" src={logo} alt=""></img>
+        </div>
         <h2>Log In</h2>
         <form onSubmit={onLogin}>
           <div>
