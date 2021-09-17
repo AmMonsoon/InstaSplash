@@ -24,6 +24,13 @@ const NavBar = ({userId}) => {
               </div>
             </NavLink>
 
+            <NavLink to={`/images/add`} exact={true} activeClassName='active'>
+              <div className="navbar__buttons--wrapper__button">
+                <i class="fas fa-plus"></i>
+                {/* <i class="fas fa-home"></i> */}
+              </div>
+            </NavLink>
+
             <NavLink to={`/users/${userId}`} exact={true} activeClassName='active'>
               <div className="navbar__buttons--wrapper__button">
                 <i class="far fa-user"></i>
