@@ -1,7 +1,7 @@
 # InstaSplash
 InstaSplash is way for user to splash into a creative environment of users posting all types of creative/unique images.
 Users can sign up and express thoughts/interests on images by commenting or liking an image.
-The Instasplash live link can be found here: <a href='https://instasplash.herokuapp.com/'>InstaSplash</a> !!!
+The Instasplash live link can be found here: <a href='https://instasplash-live.herokuapp.com/'>InstaSplash</a> !!!
 
 ## Technologies
 * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/-JavaScript-F7DF1E?logo=JavaScript&logoColor=333333" /></a>
