@@ -88,6 +88,26 @@ export const addNewImage = (imagePayload) => async(dispatch) => {
     return image
 }
 
+//for aws
+export const addNewImageFile = (imagePayload) => async(dispatch) => {
+    const formData = new FormData()
+    formData.append("caption", imagePayload.caption)
+    formData.append("file", imagePayload.imageFile)
+    const res = await fetch('/api/images/addFile', {
+        method:"POST",
+        body: formData
+    })
+    const image = await res.json()
+    dispatch(addImage(image))
+    return image
+}
+
+
+// export const uploadFile = (fileForm) => async(dispatch) => {
+//     const {}
+// }
+
+
 const getImage = (image) => ({
 type: GET_IMAGE,
 image,

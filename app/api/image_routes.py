@@ -4,7 +4,8 @@ from sqlalchemy import orm, desc
 from flask_login import current_user
 from datetime import datetime
 import random
-
+from app.aws_s3 import upload_file_to_s3
+from app.config import Config
 
 image_routes = Blueprint('images', __name__)
 
@@ -40,7 +41,7 @@ def explore():
     following = Follower.query.filter(Follower.follower == current_user.id).all()
     followedUsers = [follow.followed for follow in following]
     notFollowing = User.query.filter(User.id.not_in(followedUsers)).all()
-    
+
     random.shuffle(notFollowing)
     notFollowingLimit = [notFollowing[i] for i in range(5)]
     payload = []
@@ -61,7 +62,7 @@ def explore():
 
             image.comments = commentPayload
             payload.append(image.to_dict_inc_user_likes_comments())
-    
+
     lit = dict(enumerate(payload))
     return lit
 
@@ -98,7 +99,7 @@ def update_caption(id):
     for like in likes:
         payload2[like.userId] = like.to_dict()
     image.likes = payload2
-    
+
     comments = Comment.query.filter(Comment.imageId == id).all()
     commentPayload = {}
     for comment in comments:
@@ -124,6 +125,27 @@ def addImage():
     db.session.commit()
     payload = image.to_dict()
     return payload
+
+@image_routes.route('/addFile', methods=["POST"])
+def addImageFile():
+    if "file" not in request.files:
+        return "No file key in request.files"
+    file = request.files["file"]
+
+    if file:
+        file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+        image = Image(
+            userId=current_user.id,
+            caption=request.form.get('caption'),
+            imageUrl=file_url,
+            created_at=datetime.now()
+            )
+        db.session.add(image)
+        db.session.commit()
+        payload = image.to_dict()
+        return payload
+    else: return "No file attached!~"
+
 
 @image_routes.route('/<int:id>' , methods=['DELETE'])
 def delete_image(id):

@@ -49,3 +49,5 @@ def update_profilePic(id):
     db.session.add(user)
     db.session.commit()
     return "BIG SUCCESS"
+
+
