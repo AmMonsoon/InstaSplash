@@ -8,7 +8,7 @@ const CreateImage = ({ setShowModal }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const userId = useSelector(state => state.session.user.id)
+    // const userId = useSelector(state => state.session.user.id)
 
     const [imageUrl, setImageUrl] = useState('');
     const [caption, setCaption] = useState('');
@@ -54,7 +54,11 @@ const handleSubmit = async(e) => {
                 imageUrl,
             }
             let createdImage = await dispatch(addNewImage(image))
-            if(createdImage) history.push(`/images/${createdImage.id}`)
+            if(createdImage) {
+                history.push(`/images/${createdImage.id}`)
+                setShowModal(false)
+            }
+
 
         } else {
             //image file version
@@ -63,7 +67,10 @@ const handleSubmit = async(e) => {
                 imageFile,
             }
             let createdImage = await dispatch(addNewImageFile(image))
-            if(createdImage) history.push(`/images/${createdImage.id}`)
+            if(createdImage) {
+                history.push(`/images/${createdImage.id}`)
+                setShowModal(false)
+            }
 
         }
     }
@@ -73,7 +80,8 @@ const handleSubmit = async(e) => {
 
     const handleCancel = async(e) => {
         e.preventDefault();
-        history.push(`/users/${userId}`)
+        // history.push(`/users/${userId}`)
+        setShowModal(false)
     }
 
     // const updateImage = (e) => {
@@ -87,48 +95,48 @@ const handleSubmit = async(e) => {
     // console.log("IMAGE OBJ", imageFile)
     return(
         <div className="jwrapper">
-        <section className='add-image-section'>
-            <h1 id='add-image-header'>Post a Pic</h1>
-             <div>
-            {validationErrors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-            </div>
+            <section className='add-image-section'>
+                <div id='add-image-header'>Post a Pic</div>
+                <div>
+                {validationErrors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+                ))}
+                </div>
 
-            <form
-            className='add-image-form'
-            onSubmit={handleSubmit}>
-                <input className='new-image-form-input'
-                placeholder="Caption"
-                type="text"
-                required
-                value={caption}
-                onChange={(e) => setCaption(e.target.value)}
-                />
+                <form
+                className='add-image-form'
+                onSubmit={handleSubmit}>
+                    <input className='new-image-form-input'
+                    placeholder="Caption"
+                    type="text"
+                    required
+                    value={caption}
+                    onChange={(e) => setCaption(e.target.value)}
+                    />
 
-                <input className='new-image-form-input'
-                placeholder="Image URL"
-                type="text"
-                value={imageUrl}
-                onChange={((e) => setImageUrl(e.target.value))}
-                />
+                    <input className='new-image-form-input'
+                    placeholder="Image URL"
+                    type="text"
+                    value={imageUrl}
+                    onChange={((e) => setImageUrl(e.target.value))}
+                    />
 
-                {/* FOR AWS UPLOAD FILE SELECT */}
-                <label className="new-image-form-input-aws" htmlFor="new-image-form-input-aws5">
-                <input
-                id="new-image-form-input-aws5"
-                type="file"
-                onChange={(e) => setImageFile(e.target.files[0])}
-                accept="image/*"
-                /></label>
+                    {/* FOR AWS UPLOAD FILE SELECT */}
+                    <label className="new-image-form-input-aws" htmlFor="new-image-form-input-aws5">
+                    <input
+                    id="new-image-form-input-aws5"
+                    type="file"
+                    onChange={(e) => setImageFile(e.target.files[0])}
+                    accept="image/*"
+                    /></label>
 
-            {imageUrl && <div><div>Preview Post:</div><img className="add-img-preview" src={imageUrl} alt=""></img></div>}
+                {imageUrl && <div className="add-img-wrapper"><div>Preview Post:</div><img className="add-img-preview" src={imageUrl} alt=""></img></div>}
 
-                <button type="submit" >Submit</button>
-                <button type="click" onClick={handleCancel}>Cancel</button>
+                    <button type="submit" >Submit</button>
+                    <button type="click" onClick={handleCancel}>Cancel</button>
 
-            </form>
-        </section>
+                </form>
+            </section>
         </div>
     )
 }

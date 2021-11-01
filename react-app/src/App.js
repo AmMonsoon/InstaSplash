@@ -59,10 +59,10 @@ function App() {
           <NavBar userId={currentUser?.id}/>
           <Home />
         </ProtectedRoute>
-        <ProtectedRoute path='/images/add' exact={true}>
+        {/* <ProtectedRoute path='/images/add' exact={true}>
           <NavBar userId={currentUser?.id}/>
           <CreateImage />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path='/images/:imageId' exact={true} >
           <NavBar userId={currentUser?.id}/>
           <Image />

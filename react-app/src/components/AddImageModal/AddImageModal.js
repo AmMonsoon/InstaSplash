@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
 import CreateImage from '../AddImage'
 import {Modal} from "../context/Modal"
+import "./AddImageModal.css"
 
 function CreateImageModal() {
     const [showModal, setShowModal] = useState(false)
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>
+            <button className="modal__addimage-button" onClick={() => setShowModal(true)}>
                 <i className="fas fa-plus"></i>
             </button>
             {showModal && (

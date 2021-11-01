@@ -24,6 +24,21 @@
     border-radius: 5px;
   } */
 
-  .modal__addImage {
-      background-color:red;
+  .modal__addimage-button i{
+    color: rgba(0,0,0,0.4);
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal__addimage-button {
+    border: none;
+    background: none;
+  }
+
+  .modal__addImage-button:hover {
+    cursor:pointer;
   }
