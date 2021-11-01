@@ -132,3 +132,11 @@ html, body, #root {
     display: flex;
     justify-content: center;
 }
+
+.loginpage-form input{
+    background-color: rgba(0,0,0,0.05);
+    border: none;
+    border-radius: .5em;
+    height: 2.5em;
+    width: 15em;
+}
