@@ -25,6 +25,7 @@ html, body, #root {
     max-width: 300px;
 }
 
+
 .login-page-container {
     display: flex;
     justify-content: flex-end;
@@ -90,29 +91,33 @@ html, body, #root {
     width: 95px;
     height: 40px;
     align-self: center;
+    margin-left: 1em;
 }
+
+.login-demo-btn:hover,
+.login__submit--button:hover {
+    cursor: pointer;
+
+}
+
 .about-me-section{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     flex:1;
-   
+
     margin-top: 5%;
 }
 
 .about-me-section img{
     object-fit: cover;
-    height: 87px;
-    width: 103px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
 }
 
-.about-me-section img:hover{
-
-}
-
 .about-me-section a{
-    
+
     text-decoration: none;
     text-justify: end;
     justify-content: end;

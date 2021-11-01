@@ -18,7 +18,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
 
- 
+
 
 
 
@@ -55,12 +55,14 @@ const LoginForm = () => {
           <img className="logo__image" src={logo} alt=""></img>
         </div>
         <div className="login__text">Log In</div>
-        <form onSubmit={onLogin}>
+        <form className="loginpage-form"onSubmit={onLogin}>
+
           <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
+
           <div className="login-page-email">
             {/* <label htmlFor='email'>Email</label> */}
             <input
@@ -71,6 +73,7 @@ const LoginForm = () => {
               onChange={updateEmail}
             />
           </div>
+
           <div className="login-page-password">
             {/* <label htmlFor='password'>Password</label> */}
             <input
@@ -81,21 +84,23 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
           </div>
+
           <button  className="login__submit--button" type='submit'>Login</button>
+          <button className="login-demo-btn" onClick={loginDemo}>Demo</button>
+
         </form>
-        <button className="login-demo-btn" onClick={loginDemo}>Demo</button>
         <div className="login__signup">
           Don't have an account? <NavLink className="login-page-signup-link" to="/sign-up">Sign Up</NavLink>
         </div>
         <div className='about-me-section'>
-              
-            
+
+
               <a href='https://github.com/cpowers1203' ><img src={Pat}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Pat}/></a>
               <a href='https://github.com/AmMonsoon' ><img src={Lily}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Lily}/></a>
               <a href='https://github.com/penced0513' ><img src={daniel}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = daniel}/></a>
               <a href='https://github.com/WellerJay118' ><img src={jacob}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = jacob}/></a>
-              
-             
+
+
         </div>
       </div>
     </div>
