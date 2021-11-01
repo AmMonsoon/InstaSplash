@@ -38,6 +38,7 @@ html, body, #root {
     display: flex;
     flex-direction: column;
     align-content: center;
+    justify-content: center;
     background-color: white;
     padding: 0 2em;
     width: 20%;
@@ -101,11 +102,14 @@ html, body, #root {
 }
 
 .about-me-section{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    flex:1;
-
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
+    /* flex:1; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 205px;
     margin-top: 5%;
 }
 
@@ -121,4 +125,10 @@ html, body, #root {
     text-decoration: none;
     text-justify: end;
     justify-content: end;
+    width: 100px;
+}
+
+.about-me-wrapper{
+    display: flex;
+    justify-content: center;
 }

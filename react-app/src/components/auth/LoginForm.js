@@ -92,14 +92,14 @@ const LoginForm = () => {
         <div className="login__signup">
           Don't have an account? <NavLink className="login-page-signup-link" to="/sign-up">Sign Up</NavLink>
         </div>
-        <div className='about-me-section'>
+        <div className="about-me-wrapper">
 
-
-              <a href='https://github.com/cpowers1203' ><img src={Pat}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Pat}/></a>
-              <a href='https://github.com/AmMonsoon' ><img src={Lily}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Lily}/></a>
-              <a href='https://github.com/penced0513' ><img src={daniel}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = daniel}/></a>
-              <a href='https://github.com/WellerJay118' ><img src={jacob}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = jacob}/></a>
-
+          <div className='about-me-section'>
+                <a href='https://github.com/cpowers1203' ><img src={Pat}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Pat}/></a>
+                <a href='https://github.com/AmMonsoon' ><img src={Lily}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = Lily}/></a>
+                <a href='https://github.com/penced0513' ><img src={daniel}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = daniel}/></a>
+                <a href='https://github.com/WellerJay118' ><img src={jacob}  alt='' onMouseOver={(e) => e.currentTarget.src = github} onMouseOut={(e) => e.currentTarget.src = jacob}/></a>
+          </div>
 
         </div>
       </div>
