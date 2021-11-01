@@ -52,7 +52,7 @@
 }
 
 .navbar__buttons--wrapper i {
-    color: rgba(0,0,0,0.2);
+    color: rgba(0,0,0,0.4);
 }
 
 
@@ -69,8 +69,16 @@
     align-items: center;
     text-decoration: none;
 }
-.navbar__buttons--wrapper__button:hover {
+
+
+/* .navbar__buttons--wrapper__button i:hover, */
+.navbar__buttons--wrapper div:hover {
     opacity: 70%;
+    color: #209CEE;
+    border-color: #209CEE;
+    /* transition-delay: .5s; */
+    transition-duration: .25s;
+
 }
 
 .logout_button {
