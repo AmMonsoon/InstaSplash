@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import "./NavBar.css"
 import logo from "../logo.png"
+import CreateImageModal from './AddImageModal/AddImageModal';
 
 
 const NavBar = ({userId}) => {
@@ -24,12 +25,13 @@ const NavBar = ({userId}) => {
               </div>
             </NavLink>
 
-            <NavLink to={`/images/add`} exact={true} activeClassName='active'>
+            {/* <NavLink to={`/images/add`} exact={true} activeClassName='active'> */}
               <div className="navbar__buttons--wrapper__button">
-                <i className="fas fa-plus"></i>
+                {/* <i className="fas fa-plus"></i> */}
+                <CreateImageModal />
                 {/* <i className="fas fa-home"></i> */}
               </div>
-            </NavLink>
+            {/* </NavLink> */}
 
             <NavLink to={`/users/${userId}`} exact={true} activeClassName='active'>
               <div className="navbar__buttons--wrapper__button">

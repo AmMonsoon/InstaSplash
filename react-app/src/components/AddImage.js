@@ -4,7 +4,7 @@ import { addNewImage, addNewImageFile } from "../store/image"
 import { useHistory } from "react-router-dom"
 import './AddImage.css'
 
-const CreateImage = () => {
+const CreateImage = ({ setShowModal }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -86,6 +86,7 @@ const handleSubmit = async(e) => {
 
     // console.log("IMAGE OBJ", imageFile)
     return(
+        <div className="jwrapper">
         <section className='add-image-section'>
             <h1 id='add-image-header'>Post a Pic</h1>
              <div>
@@ -93,6 +94,7 @@ const handleSubmit = async(e) => {
               <div key={ind}>{error}</div>
             ))}
             </div>
+
             <form
             className='add-image-form'
             onSubmit={handleSubmit}>
@@ -103,12 +105,14 @@ const handleSubmit = async(e) => {
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
                 />
+
                 <input className='new-image-form-input'
                 placeholder="Image URL"
                 type="text"
                 value={imageUrl}
                 onChange={((e) => setImageUrl(e.target.value))}
                 />
+
                 {/* FOR AWS UPLOAD FILE SELECT */}
                 <label className="new-image-form-input-aws" htmlFor="new-image-form-input-aws5">
                 <input
@@ -117,6 +121,7 @@ const handleSubmit = async(e) => {
                 onChange={(e) => setImageFile(e.target.files[0])}
                 accept="image/*"
                 /></label>
+
             {imageUrl && <div><div>Preview Post:</div><img className="add-img-preview" src={imageUrl} alt=""></img></div>}
 
                 <button type="submit" >Submit</button>
@@ -124,6 +129,7 @@ const handleSubmit = async(e) => {
 
             </form>
         </section>
+        </div>
     )
 }
 
