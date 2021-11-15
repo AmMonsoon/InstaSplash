@@ -13,6 +13,27 @@ The Instasplash live link can be found here: <a href='https://instasplash-live.h
 * <a href="https://flask.palletsprojects.com/en/2.0.x/"><img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" /></a>
 ## Features 
 
+### Sign-up
+![Sign Up](react-app/src/images/signup.png)
+
+### Login
+![Login](react-app/src/images/login.png)
+
+### User Profile
+![Profile](react-app/src/images/profile.png)
+
+### Edit Profile
+![EditProfile](react-app/src/images/editProfilePic.png)
+
+### Following
+![Following](react-app/src/images/following.png)
+
+### Comments
+![Comments](react-app/src/images/comment.png)
+
+### Post an Image
+![Post](react-app/src/images/postImage.png)
+
 ## Installation
 To build/run project locally, please follow these steps:
 
